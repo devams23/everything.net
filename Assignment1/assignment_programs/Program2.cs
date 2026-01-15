@@ -18,13 +18,13 @@
 //        {
 //            Console.WriteLine("Values beore changing\nAge: " + age + "Program.somedata: " +
 //    program.somedata);
-            
+
 //            age = 25;
 //            program.somedata = 5;
 
 
 
 //        }
-        
+
 //    }
 //}
