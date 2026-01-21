@@ -8,8 +8,4 @@
     <StartupObject>Day4.programs.Generics</StartupObject>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="theory\" />
-  </ItemGroup>
-
 </Project>
