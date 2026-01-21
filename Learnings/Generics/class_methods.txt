@@ -1,0 +1,28 @@
+Generic Classes:  
+public class MyGenericArray<T> {
+      private T[] array;
+      
+      public MyGenericArray(int size) {
+         array = new T[size + 1];
+      }
+      public T getItem(int index) {
+         return array[index];
+      }
+      public void setItem(int index, T value) {
+         array[index] = value;
+      }
+   }
+
+Generic methods: 
+public void Swap<T>(ref T a , ref T b)
+{
+	//swap values
+}
+
+
+// so we can use it 
+
+MyGenericArray<int> 
+MyGenericArray<char>
+
+Swap<int>( ref a, ref b)
