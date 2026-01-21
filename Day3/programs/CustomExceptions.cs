@@ -47,21 +47,23 @@ namespace Day3.programs
 
         internal void ValidateAmount(float amount)
         {
-            if (amount < 0)
-            {
-                throw new ArgumentOutOfRangeException("Amount should be greater then zero");
-            }
-            else if (balance < amount)
-            {
-                throw new IncufficientBalanceException("Please Check Your Balance!", amount);
-
-            }
-
+            // if the value is negative or zero than throw exception, as shorthand for if (amount <= 0)
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(amount);
         }
-        internal float DeductMoney(float amount)
+        internal void ValidateSufficientBalance(float amount)
+        {
+
+            ValidateAmount(amount);
+
+            if (amount > balance)
+            {
+                throw new IncufficientBalanceException("Insufficient Balance in your account", amount);
+            }
+        }
+        internal void DeductMoney(float amount)
         {
             balance -= amount;
-            return balance;
+            
         }
         internal float WithdrawBalance(float amount)
         {
@@ -69,7 +71,8 @@ namespace Day3.programs
             try
             {
                 Console.WriteLine("Withdrawing Amount"+ amount);
-                ValidateAmount(amount);
+                // checks for if amount is valid and sufficient
+                ValidateSufficientBalance(amount);
                 DeductMoney(amount);
             }
             catch( ArgumentOutOfRangeException ex)
@@ -78,7 +81,7 @@ namespace Day3.programs
                 
             }
             catch (IncufficientBalanceException ex) {
-                Console.WriteLine("EXCEPTION OCCURED:"+ ex.Message + ex.AmountValue);
+                Console.WriteLine("EXCEPTION OCCURED:"+ ex.Message+ " Can't withraw "+ ex.AmountValue);
             }
             finally
             {
