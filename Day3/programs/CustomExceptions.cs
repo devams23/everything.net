@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Channels;
 
@@ -8,33 +9,30 @@ namespace Day3.programs
     
     internal class IncufficientBalanceException: Exception
     {
+        public float AmountValue;
         internal IncufficientBalanceException() { }
-        internal IncufficientBalanceException(string message) : base(message)
+        internal IncufficientBalanceException(string message , float amount) : base(message)
         {
-
+               AmountValue = amount;
         }
     }
     internal class ApnaBank
     {
          
-        int balance = 0;
+        float balance = 0.0f;
 
-        internal ApnaBank(int balance) {
+        internal ApnaBank(float balance) {
             this.balance = balance;
         }
-        internal int AddBalance(int amount)
+        internal float AddBalance(float amount)
         {
             try
             {
-                if (amount < 0)
-                {
-                    throw new ArgumentOutOfRangeException("Amount should be greater then zero");
-                }
-                else
-                {
-                    balance += amount;
-                    return balance;
-                }
+                ValidateAmount(amount);
+
+                balance += amount;
+                return balance;
+
             }
             catch (ArgumentOutOfRangeException ex)
             {
@@ -46,24 +44,41 @@ namespace Day3.programs
             return balance;
 
         }
-        internal int WithdrawBalance(int amount)
+
+        internal void ValidateAmount(float amount)
+        {
+            if (amount < 0)
+            {
+                throw new ArgumentOutOfRangeException("Amount should be greater then zero");
+            }
+            else if (balance < amount)
+            {
+                throw new IncufficientBalanceException("Please Check Your Balance!", amount);
+
+            }
+
+        }
+        internal float DeductMoney(float amount)
+        {
+            balance -= amount;
+            return balance;
+        }
+        internal float WithdrawBalance(float amount)
         {
             Console.WriteLine("Your Current Balance"+ balance);
             try
             {
-                if (balance >= amount)
-                {
-                    balance -= amount;
-                    Console.WriteLine("Balance Deducted"+ amount);
-                    return balance;
-                }
-                else
-                {
-                    throw new IncufficientBalanceException("Please Check Your Balance!");
-                }
+                Console.WriteLine("Withdrawing Amount"+ amount);
+                ValidateAmount(amount);
+                DeductMoney(amount);
+            }
+            catch( ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine("EXCEPTION OCCURED: "+ex.Message);
+                
             }
             catch (IncufficientBalanceException ex) {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("EXCEPTION OCCURED:"+ ex.Message + ex.AmountValue);
             }
             finally
             {
@@ -73,7 +88,7 @@ namespace Day3.programs
             return balance;
         }
 
-        internal int GetBalance()
+        internal float  GetBalance()
         {
             return balance;
         }
