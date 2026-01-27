@@ -5,7 +5,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	  <StartupObject>Day1_OOP.Program.PartialClasses.Student</StartupObject>
+	  <StartupObject>Day1_OOP.Program.OOP_Refactor</StartupObject>
   </PropertyGroup>
 
 </Project>

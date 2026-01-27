@@ -10,95 +10,85 @@ namespace Day1_OOP.Program
 {
 
     /*
-     * There are a few issues in Procedural Programming: 
-     * 1. What if we had multiple bank accounts to manage, and we want each bank account to have all the 
-     * functionality same as everything..
-     * 2. what if we want to inherit some properties, and dont have to write the same functions every time
+     * changes done after refactoring: 
+     * 1. made it more generic and reusable by creating an interface IBankAccount
+     * 2. made it easy to add new account types without modifying existing code
      * 
      */
 
     interface IBankAccount
     {
-        void Deposit(float amount);
-        void Withdraw(float amount);
+        void Deposit(decimal amount);
+        void Withdraw(decimal amount);
         void DisplayAccountInfo();
     }
 
-    public class SavingsAccount : IBankAccount
+    // making it abstract, so that no one can create an instance of BankAccount directly.
+    public abstract class BankAccount : IBankAccount
     {
-        // making the field readonly because it doesnt change laters, once assigned.
-        private readonly string? AccountNumber;
-        protected float INTEREST_RATE = 2.5f;
-        protected string AccountType = "SAVINGS";
+        public string AccountNumber { get; }
+        public string HolderName { get; }
+        public decimal Balance { get; protected set; }
 
-        public string? HolderName { get; set; }
-        private float Balance;
-
-
-        public SavingsAccount(string accNumber, string holderName, float balance)
+        // using abstract, because we want derived classes to implement their own version of AccountType and INTEREST_RATE
+        public abstract string AccountType { get; }
+        public abstract decimal INTEREST_RATE { get; } 
+        protected BankAccount(string accNo, string holder, decimal balance)
         {
-            AccountNumber = accNumber;
-            HolderName = holderName;
-            Balance = balance ;
-
+            Console.WriteLine("bank account constructor called");
+            AccountNumber = accNo;
+            HolderName = holder;
+            Balance = balance;
         }
-        //just a helper method to reduce code duplication
 
-        /// <summary>
-        /// Prints a string message to the console.
-        /// </summary>
-        /// <param name="message"></param>
-        public void CW(string message)
+        public virtual void Deposit(decimal amount)
         {
-            Console.WriteLine(message);
-        }
-        public  void Deposit(float amount)
-        {
-            if (amount <= 0)
-            {
-                CW("Deposit amount must be positive.");
-                return;
-            }
-
+            if (amount <= 0) throw new ArgumentException("Invalid amount");
             Balance += amount;
-            CW($"SUCCESS: Deposited {amount}. New Balance: {Balance}");
         }
 
-        public  void Withdraw(float amount)
+        public virtual void Withdraw(decimal amount)
         {
-            if (amount <= 0)
-            {
-                CW("Withdrawal amount must be positive.");
-                return;
-            }
-            if (amount > Balance)
-            {
-                CW("Insufficient funds for this withdrawal.");
-                return;
-            }
+            if (amount > Balance) throw new InvalidOperationException("Insufficient funds");
             Balance -= amount;
-            CW($"SUCCESS: {amount} DEDUCTED. CURRENT BALANCE: {Balance}");
         }
-
-        public  void DisplayAccountInfo()
+        public virtual void DisplayAccountInfo()
         {
-            CW($"Account Number: {AccountNumber}");
-            CW($"Holder Name: {HolderName}");
-            CW($"Account Type: {AccountType}");
-            CW($"Balance: {Balance}");
-            CW("INTEREST RATE: "+ INTEREST_RATE);
+            Console.WriteLine($"Account Number: {AccountNumber}");
+            Console.WriteLine($"Holder Name: {HolderName}");
+            Console.WriteLine($"Account Type: {AccountType}");
+            Console.WriteLine($"Balance: {Balance}");
+            
         }
     }
 
-    public class CurrentAccount : SavingsAccount
+    public class SavingsAccount : BankAccount
     {
-        
+        // making the field readonly because it doesnt change laters, once assigned.
+        public override decimal INTEREST_RATE { get; } = 2.5m;
+        public override string AccountType => "SAVINGS";
+
+
+        public override void DisplayAccountInfo()
+        {
+            base.DisplayAccountInfo();
+            Console.WriteLine($"Interest Rate: {INTEREST_RATE}%");
+        }
+        public SavingsAccount(string accNumber, string holderName, decimal balance) : base( accNumber, holderName, balance)
+        {
+ 
+        }
+    }
+
+    public class CurrentAccount : BankAccount
+    {
+        public override string AccountType => "CURRENT";
+        public override decimal INTEREST_RATE => 0m;
         // here we dont have to re-write other methods, but we have the ability to add new methods.
-        public CurrentAccount(string accNumber, string holderName, float balance)
+        public CurrentAccount(string accNumber, string holderName, decimal balance)
             : base(accNumber, holderName, balance)
         {
-            AccountType = "CURRENT";
-            INTEREST_RATE = 0f;
+    
         }
     }
     internal class OOP_Refactor
@@ -109,10 +99,11 @@ namespace Day1_OOP.Program
             /* making it loose-couples as, in methods while we pass we dont have to specify the type of
                 account, just have to do (IBankAccount account)
             */
+         
             IBankAccount savingsAccount1 = new SavingsAccount("124abc", "DEVAM", 3432);
             savingsAccount1.DisplayAccountInfo();
 
-            IBankAccount currentAccount1 = new CurrentAccount("231sda", "DEvam", 432.4f);
+            IBankAccount currentAccount1 = new CurrentAccount("231sda", "DEvam", 432.4m);
             currentAccount1.DisplayAccountInfo();
             }
         }
