@@ -20,17 +20,17 @@ public class DataAccessManager
 
 {
 
-&nbsp;   private static readonly string ConnectionString;
+  private static readonly string ConnectionString;
 
 
 
-&nbsp;   // Static constructor is called once
+  // Static constructor is called once
 
-&nbsp;   static DataAccessManager()
+   static DataAccessManager()
 
-&nbsp;   {
+   {
 
-&nbsp;       // Initialize the connection string from a configuration source
+       // Initialize the connection string from a configuration source
 
      ConnectionString = ConfigurationManager.ConnectionStrings\["MyDatabase"].ConnectionString;
 
