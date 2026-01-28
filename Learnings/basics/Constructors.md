@@ -14,7 +14,7 @@
 
 * Usercase:
 
-``` charp
+``` csharp
 
 public class DataAccessManager
 
@@ -32,25 +32,23 @@ public class DataAccessManager
 
 &nbsp;       // Initialize the connection string from a configuration source
 
-&nbsp;       ConnectionString = ConfigurationManager.ConnectionStrings\["MyDatabase"].ConnectionString;
+     ConnectionString = ConfigurationManager.ConnectionStrings\["MyDatabase"].ConnectionString;
 
-&nbsp;       Console.WriteLine("Static constructor executed. Connection string initialized.");
-
-&nbsp;   }
-
+      Console.WriteLine("Static constructor executed. Connection string initialized.");
+   }
 
 
-&nbsp;   // Static method that uses the initialized static data
 
-&nbsp;   public static void ExecuteQuery(string query)
+ // Static method that uses the initialized static data
 
-&nbsp;   {
+  public static void ExecuteQuery(string query)
+  {
 
-&nbsp;       // Use the connection string here
+      // Use the connection string here
 
-&nbsp;       Console.WriteLine($"Executing query: {query} with connection: {ConnectionString}");
+      Console.WriteLine($"Executing query: {query} with connection: {ConnectionString}");
 
-&nbsp;   }
+   }
 
 }
 
