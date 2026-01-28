@@ -1,9 +1,10 @@
 <Solution>
   <Project Path="Day1/Day1.csproj" />
+  <Project Path="Day1_OOP/Day1_OOP.csproj" />
   <Project Path="Day2/Day2.csproj" />
-  <Project Path="Day3/Day3.csproj"  />
+  <Project Path="Day2_OOP/Day2_OOP.csproj" Id="9b614e06-8fa6-4720-920a-830a51ac835a" />
+  <Project Path="Day3/Day3.csproj" />
   <Project Path="Day4/Day4.csproj" />
   <Project Path="Day5/Day5.csproj" />
   <Project Path="Day6/Day6.csproj" />
-  <Project Path="Day1_OOP/Day1_OOP.csproj" />
 </Solution>
