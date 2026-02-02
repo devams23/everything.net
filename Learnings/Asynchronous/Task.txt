@@ -1,0 +1,1 @@
+Task.Run queues work to the ThreadPool, which may reuse or create threads — you don’t get a dedicated thread.

@@ -1,0 +1,82 @@
+using System;                                                                                                               
+public delegate void HandleTempWarnig(string message);
+                                                                                                            
+namespace EventExample {
+	
+	class ThresholdReachedEventArgs{
+		public int _temp;
+		public int _threshold;
+		public DateTime _timestamp;
+		public ThresholdReachedEventArgs(int Temp,int Threshold,DateTime Time){
+				_temp = Temp;
+				_timestamp = Time;
+				_threshold = Threshold;
+				
+		}
+
+	}
+    // publisher class
+    class TemperatureSensor{
+        public event EventHandler<ThresholdReachedEventArgs> HandleTemp;
+        private int temp = 0;
+        private int threshold = 50;
+        
+        public void IncreaseTemp(int temp_reading){
+            
+            temp+=temp_reading;
+            
+            if(temp>threshold){
+                HandleTemp?.Invoke(this, new ThresholdReachedEventArgs(temp,threshold,DateTime.Now) );
+            }
+            
+        }
+        
+        
+        
+    }
+    // subscriber class
+    class Subscriber{
+        private string _name;
+		
+		public Subscriber(string Message){
+			_name = Message;
+		}
+        public void Subscribe(TemperatureSensor ts){
+            Console.WriteLine(nameof(ts) + "Subsribed to sensor");
+            ts.HandleTemp += (object sender, ThresholdReachedEventArgs message)=> { Console.WriteLine($"Lambda::{_name}::Subscriber received event from {sender.GetType().Name}: {message._temp}"); };
+        }
+        public static void MailSubscribe(object sender, ThresholdReachedEventArgs message){
+             Console.WriteLine($"MailSENT::Subscriber received event from {sender.GetType().Name}: {message._temp}");
+
+        }
+        public void HandleTempExceed(object sender, ThresholdReachedEventArgs message){
+            Console.WriteLine($"{_name} Subscriber received event from {sender.GetType().Name}: {message._temp}");
+        }
+    }
+    
+    public class Program { 
+        public enum Status
+{
+    Pending, // Default value is 0
+    Active,  // Default value is 1
+    Cancelled = 5, // Explicit value is 5
+    Inactive // Value is 6 (increments from previous)
+}
+
+
+        
+        public static void Main(){    
+            TemperatureSensor sensor = new TemperatureSensor();
+            Subscriber subscriber1 = new Subscriber("devam");
+            Subscriber subscriber2 = new Subscriber("devam-s");
+            
+            subscriber1.Subscribe(sensor);
+        subscriber2.Subscribe(sensor);
+            
+            
+            sensor.IncreaseTemp(40);
+            sensor.IncreaseTemp(40);
+        }
+}
+    
+}

@@ -1,0 +1,41 @@
+An indexer allows an object to be indexed such as an array. When you define an indexer for a class, this class behaves similar to a virtual array. You can then access the instance of this class using the array access operator ([ ]).
+//accessing the objects using index accessors,
+
+using System;
+namespace IndexerApplication {
+class Person
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+}
+
+class People
+{
+    private Person[] persons = new Person[10];
+
+    public People()
+    {
+        for (int i = 0; i < persons.Length; i++)
+            persons[i] = new Person();
+    }
+
+	public Person this[int index]{
+		get {
+			return persons[index];
+		}
+		set{
+			persons[index]=value;
+		}
+	}
+
+      static void Main(string[] args) {
+         People people = new People();
+
+		people[0].Name = "Zara";
+		people[0].Age = 22;
+
+Console.WriteLine(people[0].Name);
+Console.WriteLine(people[0].Age);
+      }
+   }
+}

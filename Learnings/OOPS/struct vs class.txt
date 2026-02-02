@@ -1,0 +1,15 @@
+Structures can have methods, fields, indexers, properties, operator methods, and events.
+
+Structures can have defined constructors, but not destructors. However, you cannot define a default constructor for a structure. The default constructor is automatically defined and cannot be changed.
+
+Unlike classes, structures cannot inherit other structures or classes.
+
+Structures cannot be used as a base for other structures or classes.
+
+A structure can implement one or more interfaces.
+
+Structure members cannot be specified as abstract, virtual, or protected.
+
+When you create a struct object using the New operator, it gets created and the appropriate constructor is called. Unlike classes, structs can be instantiated without using the New operator.
+
+If the New operator is not used, the fields remain unassigned and the object cannot be used until all the fields are initialized.

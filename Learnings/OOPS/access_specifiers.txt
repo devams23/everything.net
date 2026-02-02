@@ -1,0 +1,11 @@
+public − The member is accessible from anywhere in the program.
+
+private − The member is accessible only within the same class.
+
+protected − The member is accessible within the same class and derived classes.
+
+internal − The member is accessible within the same assembly but not from another assembly.
+
+protected internal − The member is accessible within the same assembly and by derived classes.
+
+private protected − The member is accessible only within the same class and derived classes in the same assembly.
