@@ -45,6 +45,9 @@ namespace LINQ.DAY1.Services
             };
         }
 
+        /* using SelectMany mainly to convert the List<List<OrderItem> ==> List<OrderItem> , which
+        wil flatten the list , only to the first order, based on the numerable give
+        */
         public void GetProductName()
         {
             var products = orders.SelectMany(order => order.Items).ToList();
@@ -55,7 +58,10 @@ namespace LINQ.DAY1.Services
             }
         }
 
-        // 
+        /*
+            projecting the order to a new object, of customer name and the list of 
+            products they have bought.
+        */
         public void GetCustomerNameWithProducts() {
 
             var neworders = orders.Select(order => new
