@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <StartupObject>Day4_OOP.SOCIAL_MEDIA_APP.MainSocialMediaAppProgram</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="CONCEPTS\" />
+    <Folder Include="SOCIAL_MEDIA_APP\" />
+  </ItemGroup>
+
+</Project>
