@@ -1,9 +1,0 @@
-1. How a console application is created:
-	1. Open Visual Studio
-	2. Create a new project
-	3. Select Console Application template
-	4. Name the project and choose a location
-	5. Click Create
-2.Purpose of the Main() method:
-	The Main() method is where the application starts executing during runtime. It serves as the entry point for the program
-	and the Main() method must be declared static so that the CLR can call it without needing to create an instance (object) of the class in which it is defined3.Difference between Console.Write() and Console.WriteLine()  Write() outputs the characters in the console without addding a new line at the end, keeping the  cursor position on the same line.  WriteLine() outputs the characters and adds a new line at the end,

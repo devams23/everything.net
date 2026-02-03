@@ -1,6 +1,0 @@
-Feature|-----------|const|------------------------------------------------------|readonly
-Initialization		Must be initialized at the time of declaration				Can be initialized at declaration or inside a constructor
-Runtime behavior	Value is replaced at compile time (compile-time constant)	Value is set at runtime and remains constant afterward
-USE cases -			constants that do not change throughout						values which are unknow at first but do not change later
-					(Pi, taxrate )												(process ids , (session ids) , (order ids))
-														

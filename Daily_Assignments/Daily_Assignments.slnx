@@ -1,0 +1,13 @@
+<Solution>
+  <Project Path="Basics/Day1/Day1.csproj" />
+  <Project Path="Basics/Day2/Day2.csproj" />
+  <Project Path="Basics/Day3/Day3.csproj" />
+  <Project Path="Basics/Day4/Day4.csproj" />
+  <Project Path="Basics/Day5/Day5.csproj" />
+  <Project Path="Basics/Day6/Day6.csproj" />
+  <Project Path="OOP/DAY1_OOP/DAY1_OOP.csproj" />
+  <Project Path="OOP/DAY2_OOP/DAY2_OOP.csproj" />
+  <Project Path="OOP/DAY3_OOP/DAY3_OOP.csproj" />
+  <Project Path="OOP/DAY4_OOP/DAY4_OOP.csproj" />
+   <Project Path="LINQ/LINQ.csproj" />
+</Solution>
