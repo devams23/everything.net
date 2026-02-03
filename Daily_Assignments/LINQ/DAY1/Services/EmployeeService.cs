@@ -65,7 +65,10 @@ namespace LINQ.DAY1.Services
 
 
         }
-
+        /* 
+            assigning an anonymous object, type which contains, name, department and city
+            , BUT here the scope is only for this method, so it can't be accesed outside the method, 
+        */
         public void GetEmployeeNameDepartmentCity()
         {
 
@@ -88,6 +91,7 @@ namespace LINQ.DAY1.Services
             return employees.Select(emp => emp.Name).ToList();
         }
 
+        /*using a simple linq query syntax, using from and select for projection*/
         public List<string> GetEmployeeNamesOnlyQuerySyntax()
         {
             return (
