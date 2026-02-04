@@ -212,7 +212,8 @@ namespace LINQ.DAY2.Services
                                                                 .Where(emp => emp.DepartmentId == "2").Max(emp => emp.Salary));
 
 
-
+            /*here using the feature of Nested Queries, where  the result of the nested queries, will be evaluated
+             first, and then the later*/
             var EmployeesGreaterThanAverageQuery = from emp in employees
                                                    where emp.Salary >
                                                    (
