@@ -55,6 +55,7 @@ namespace LINQ.DAY2.Services
             Console.WriteLine($"Total Salary: {TotalSalary}");
 
             /*without using JOINS
+             * 
              GROUP BY- this will group the employees by their department ID ,
             and store it in the form of key-value pairs , here key is the department ID , 
             and value is the collection of employees, but we are customizing the result to have key and count as
@@ -70,6 +71,7 @@ namespace LINQ.DAY2.Services
             /* 
              * using method chaining, to first join the table, and then use GroupBy, which 
              * will group the data by departmentName
+             * SELECT - this will project the result into a new form,
             */
             var DepartmentNamesGroup = employees
                                         .Join(departments,   // table to join with
@@ -80,9 +82,10 @@ namespace LINQ.DAY2.Services
                                             employeeName = employee.Name,
                                             departmentName = department.DepartmentName, // the new data passed to other method
                                         })
-                                        .GroupBy(department => department.departmentName,
-                                                    (key, group) => new
-                                                    { DepartmentName = key, Count = group.Count() });
+                                        .GroupBy(department => department.departmentName)
+
+                                        .Select((o) => new
+                                        { DepartmentName = o.Key, Count = o.Count() });
 
 
             Console.WriteLine("---------------DEPARTMENT COUNTS :---------------------");
@@ -100,6 +103,9 @@ namespace LINQ.DAY2.Services
         public void TASK2()
         {
             /*
+             * LINQ FUNCTIONS USED: JOIN, GROUPBY
+             * using JOIN to combine two sequences based on a common key, 
+             * AND GROUPBY to group the result based on a specified key.
              * the equals keyword is used in LINQ query syntax to specify the join condition between two sequences.
              * and the select keyword is used to project the result of a LINQ query into a new form.
              */
@@ -113,7 +119,6 @@ namespace LINQ.DAY2.Services
                                            Department = dep.DepartmentName,
 
                                        };
-
             var DepartmentEmployees = employees
                             .Join(departments,
                             employee => employee.DepartmentId,
@@ -197,23 +202,28 @@ namespace LINQ.DAY2.Services
 
 
             //var AverageSalary = employees.Average(emp => emp.Salary);
+            /*
+             *  FILTERING the salary greater than the highest salary in HR department
+             *  using Where inside a where, because, first we need to get all the employees in HR department,and
+             *  then calculate the maximum salary among them, and then compare each employee's salary with that maximum salary
+             */
             var EmployeesGreaterThanAverage = employees.Where(emp => emp.Salary > employees.Average(emp => emp.Salary));
             var EmpoyeesHavingSalaryGreaterHR = employees.Where(emp => emp.Salary > employees
                                                                 .Where(emp => emp.DepartmentId == "2").Max(emp => emp.Salary));
-            
-            
-            
-            //var EmployeesGreaterThanAverageQuery = from emp in employees
-            //                              where emp.Salary >
-            //                              (
-            //                              from empnew in employees
-            //                              select emp.Salary)
-            //                              .Average()
-            //                              select emp;
 
-            foreach (var item in EmployeesGreaterThanAverage)
+
+
+            var EmployeesGreaterThanAverageQuery = from emp in employees
+                                                   where emp.Salary >
+                                                   (
+                                                   from empnew in employees
+                                                   select empnew.Salary)
+                                                   .Average()
+                                                   select emp;
+            foreach (var item in EmployeesGreaterThanAverageQuery)
             {
-                Console.WriteLine(item.Name);
+                //Console.WriteLine();
+                Console.WriteLine(item.Name + "---" +item.Salary);
             }
             Console.WriteLine("--------------- EMPLOYEES With Salary > MAX. HR-DEPartment. SALARY -----------------");
 
