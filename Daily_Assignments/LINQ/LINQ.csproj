@@ -5,7 +5,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>LINQ.DAY2.Day2Program</StartupObject>
+    <StartupObject>LINQ.DAY3.BestPractices</StartupObject>
   </PropertyGroup>
 
 </Project>

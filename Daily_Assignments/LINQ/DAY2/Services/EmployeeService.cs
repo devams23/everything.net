@@ -209,7 +209,7 @@ namespace LINQ.DAY2.Services
              */
             var EmployeesGreaterThanAverage = employees.Where(emp => emp.Salary > employees.Average(emp => emp.Salary));
             var EmpoyeesHavingSalaryGreaterHR = employees.Where(emp => emp.Salary > employees
-                                                                .Where(emp => emp.DepartmentId == "2").Max(emp => emp.Salary));
+                                                                .Where(emp => emp.DepartmentId == "2").Max(emp => emp.Salary)           );
 
 
             /*here using the feature of Nested Queries, where  the result of the nested queries, will be evaluated
@@ -221,6 +221,7 @@ namespace LINQ.DAY2.Services
                                                    select empnew.Salary)
                                                    .Average()
                                                    select emp;
+
             foreach (var item in EmployeesGreaterThanAverageQuery)
             {
                 //Console.WriteLine();
