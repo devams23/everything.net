@@ -3,48 +3,68 @@
   "WorkspaceRootPath": "D:\\bacancy_training\\.net\\backend_explore\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD6BFA9C-AF90-4E70-BE57-778487299821}|WebApplication_api\\WebApplication_api.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplication_api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{AD6BFA9C-AF90-4E70-BE57-778487299821}|WebApplication_api\\WebApplication_api.csproj|solutionrelative:webapplication_api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD6BFA9C-AF90-4E70-BE57-778487299821}|WebApplication_api\\WebApplication_api.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplication_api\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD6BFA9C-AF90-4E70-BE57-778487299821}|WebApplication_api\\WebApplication_api.csproj|solutionrelative:webapplication_api\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\migrations\\20260209084936_initial-migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\migrations\\20260209084936_initial-migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD6BFA9C-AF90-4E70-BE57-778487299821}|WebApplication_api\\WebApplication_api.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplication_api\\webapplication_api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{AD6BFA9C-AF90-4E70-BE57-778487299821}|WebApplication_api\\WebApplication_api.csproj|solutionrelative:webapplication_api\\webapplication_api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+      "AbsoluteMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD6BFA9C-AF90-4E70-BE57-778487299821}|WebApplication_api\\WebApplication_api.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplication_api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD6BFA9C-AF90-4E70-BE57-778487299821}|WebApplication_api\\WebApplication_api.csproj|solutionrelative:webapplication_api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\webapplicationmvc.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\webapplicationmvc.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplication_api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|solutionrelative:webapplication_api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{4493BCE3-9BF8-4A88-8B85-805BBEB838F2}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplication_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|solutionrelative:webapplication_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplication_api\\webapplication_api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|solutionrelative:webapplication_api\\webapplication_api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplication_api\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|solutionrelative:webapplication_api\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplicationmvc\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{4D9FE94A-0EE6-BD42-334F-8A5C0D4B1FCB}|WebApplicationMVC\\WebApplicationMVC.csproj|solutionrelative:webapplicationmvc\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -69,70 +89,66 @@
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "WebApplication_api.http",
-              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\WebApplication_api.http",
-              "RelativeDocumentMoniker": "WebApplication_api\\WebApplication_api.http",
-              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\WebApplication_api.http",
-              "RelativeToolTip": "WebApplication_api\\WebApplication_api.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2026-01-28T16:12:30.438Z",
+              "DocumentIndex": 1,
+              "Title": "ApplicationDbContextModelSnapshot.cs",
+              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "WebApplicationMVC\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "RelativeToolTip": "WebApplicationMVC\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-09T08:51:28.798Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "WeatherForecast.cs",
-              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\WeatherForecast.cs",
-              "RelativeDocumentMoniker": "WebApplication_api\\WeatherForecast.cs",
-              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\WeatherForecast.cs",
-              "RelativeToolTip": "WebApplication_api\\WeatherForecast.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAoAAAAAAAAAA==",
+              "Title": "20260209084936_initial-migration.cs",
+              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Migrations\\20260209084936_initial-migration.cs",
+              "RelativeDocumentMoniker": "WebApplicationMVC\\Migrations\\20260209084936_initial-migration.cs",
+              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Migrations\\20260209084936_initial-migration.cs",
+              "RelativeToolTip": "WebApplicationMVC\\Migrations\\20260209084936_initial-migration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T16:05:10.654Z",
+              "WhenOpened": "2026-02-09T08:49:37.425Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "WebApplicationMVC\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "WebApplicationMVC\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-01-28T15:59:04.083Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "WebApplication_api\\Properties\\launchSettings.json",
-              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Properties\\launchSettings.json",
-              "RelativeToolTip": "WebApplication_api\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\appsettings.json",
+              "RelativeDocumentMoniker": "WebApplicationMVC\\appsettings.json",
+              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\appsettings.json",
+              "RelativeToolTip": "WebApplicationMVC\\appsettings.json",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAACeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-01-28T16:15:34.101Z",
+              "WhenOpened": "2026-02-09T05:45:59.314Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "WebApplicationMVC\\Models\\Product.cs",
+              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Models\\Product.cs",
+              "RelativeToolTip": "WebApplicationMVC\\Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-09T06:14:41.212Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Program.cs",
               "RelativeDocumentMoniker": "WebApplicationMVC\\Program.cs",
               "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Program.cs",
               "RelativeToolTip": "WebApplicationMVC\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-28T16:02:22.074Z",
               "EditorCaption": ""
@@ -140,32 +156,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "WeatherForecastController.cs",
-              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Controllers\\WeatherForecastController.cs",
-              "RelativeDocumentMoniker": "WebApplication_api\\Controllers\\WeatherForecastController.cs",
-              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Controllers\\WeatherForecastController.cs",
-              "RelativeToolTip": "WebApplication_api\\Controllers\\WeatherForecastController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBYAAAAXAAAAAAAAAA==",
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "WebApplicationMVC\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "WebApplicationMVC\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T16:04:55.466Z",
+              "WhenOpened": "2026-02-09T05:35:54.985Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "WebApplicationMVC\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "WebApplicationMVC\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T16:02:18.504Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "ErrorViewModel.cs",
               "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Models\\ErrorViewModel.cs",
               "RelativeDocumentMoniker": "WebApplicationMVC\\Models\\ErrorViewModel.cs",
@@ -178,7 +181,81 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "WebApplicationMVC",
+              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\WebApplicationMVC.csproj",
+              "RelativeDocumentMoniker": "WebApplicationMVC\\WebApplicationMVC.csproj",
+              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\WebApplicationMVC.csproj",
+              "RelativeToolTip": "WebApplicationMVC\\WebApplicationMVC.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-09T05:35:53.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "WebApplication_api\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "WebApplication_api\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T16:04:55.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "WebApplication_api\\WeatherForecast.cs",
+              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\WeatherForecast.cs",
+              "RelativeToolTip": "WebApplication_api\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T16:05:10.654Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "WebApplicationMVC\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "WebApplicationMVC\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBUAAABsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T16:02:18.504Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Program.cs",
+              "RelativeDocumentMoniker": "WebApplication_api\\Program.cs",
+              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Program.cs",
+              "RelativeToolTip": "WebApplication_api\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T16:18:38.09Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "WebApplication_api.http",
+              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\WebApplication_api.http",
+              "RelativeDocumentMoniker": "WebApplication_api\\WebApplication_api.http",
+              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\WebApplication_api.http",
+              "RelativeToolTip": "WebApplication_api\\WebApplication_api.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-01-28T16:19:19.727Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "Privacy.cshtml",
               "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Views\\Home\\Privacy.cshtml",
               "RelativeDocumentMoniker": "WebApplicationMVC\\Views\\Home\\Privacy.cshtml",
@@ -186,12 +263,11 @@
               "RelativeToolTip": "WebApplicationMVC\\Views\\Home\\Privacy.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-01-28T16:01:12.839Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-28T16:01:12.839Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "WebApplicationMVC\\Views\\_ViewImports.cshtml",
@@ -199,12 +275,11 @@
               "RelativeToolTip": "WebApplicationMVC\\Views\\_ViewImports.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-01-28T16:01:05.462Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-28T16:01:05.462Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "site.css",
               "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplicationMVC\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "WebApplicationMVC\\wwwroot\\css\\site.css",
@@ -212,8 +287,7 @@
               "RelativeToolTip": "WebApplicationMVC\\wwwroot\\css\\site.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-01-28T16:01:00.439Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-28T16:01:00.439Z"
             }
           ]
         }

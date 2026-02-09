@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LINQ.DAY2
 {
-    internal class Day3Program
+    internal class Day2Program
     {
 
         public static void Main()

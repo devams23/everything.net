@@ -32,3 +32,4 @@ D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\re
 D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\WebApplication_api.pdb
 D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\WebApplication_api.genruntimeconfig.cache
 D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\ref\WebApplication_api.dll
+D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\WebApplication_api.sourcelink.json
