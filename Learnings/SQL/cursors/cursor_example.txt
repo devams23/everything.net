@@ -1,0 +1,22 @@
+DECLARE @EmployeeId INT;
+
+select *  into #temptable_employees from Employee 
+
+
+DECLARE EmployeeCursor CURSOR {SCROLL} FOR SELECT EmployeeId FROM Employees;
+-------> if we write SCROLL it enables backward scrolling
+
+OPEN EmployeeCursor;
+FETCH NEXT FROM EmployeeCursor INTO @EmployeeId;
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    UPDATE Employees
+    SET Salary = Salary * 1.10
+    WHERE EmployeeId = @EmployeeId;
+
+    FETCH NEXT FROM EmployeeCursor INTO @EmployeeId;
+END;
+
+CLOSE EmployeeCursor;
+DEALLOCATE EmployeeCursor;

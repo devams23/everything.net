@@ -13,7 +13,7 @@ It has a state machine
 	Did it fail?
 	Who is waiting for me?
 */
-class Program
+class ProgramTask
 {
 
 // simulating an API , 

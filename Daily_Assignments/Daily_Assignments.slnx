@@ -5,9 +5,10 @@
   <Project Path="Basics/Day4/Day4.csproj" />
   <Project Path="Basics/Day5/Day5.csproj" />
   <Project Path="Basics/Day6/Day6.csproj" />
+  <Project Path="EF_CORE/EF_CORE.csproj" Id="ca1862fa-ce53-455c-ab99-5a8c49af0fe3" />
+  <Project Path="LINQ/LINQ.csproj" />
   <Project Path="OOP/DAY1_OOP/DAY1_OOP.csproj" />
   <Project Path="OOP/DAY2_OOP/DAY2_OOP.csproj" />
   <Project Path="OOP/DAY3_OOP/DAY3_OOP.csproj" />
   <Project Path="OOP/DAY4_OOP/DAY4_OOP.csproj" />
-   <Project Path="LINQ/LINQ.csproj" />
 </Solution>
