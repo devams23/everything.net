@@ -9,15 +9,19 @@ namespace EF_CORE.DAY_1.DATA
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }
 
-        public DbSet<Trainer> Trainers{ get; set; }
-        public DbSet<Batch> Batches{ get; set; }
-        //public DbSet<Author> Authors { get; set; }
+        public DbSet<Trainer> Trainers { get; set; }
+        public DbSet<Batch> Batches { get; set; }
+
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Book> Books { get; set; }
 
 
         // Configure the database connection
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=EfCoreDemoDB_Day2;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder
+                .UseSqlServer("Server=localhost\\SQLEXPRESS;Database=EfCoreDemoDB_Day2;Trusted_Connection=True;TrustServerCertificate=True;")
+                .UseLazyLoadingProxies();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -51,6 +55,44 @@ namespace EF_CORE.DAY_1.DATA
 
                     );
             });
+            // Seed Authors
+            modelBuilder.Entity<Author>().HasData(
+                new Author
+                {
+                    AuthorId = 1,
+                    FirstName = "George",
+                    LastName = "Orwell"
+                },
+                new Author
+                {
+                    AuthorId = 2,
+                    FirstName = "Jane",
+                    LastName = "Austen"
+                }
+            );
+
+            // Seed Books
+            modelBuilder.Entity<Book>().HasData(
+                new Book
+                {
+                    BookId = 1,
+                    Title = "1984",
+                    AuthorId = 1
+                },
+                new Book
+                {
+                    BookId = 2,
+                    Title = "Animal Farm",
+                    AuthorId = 1
+                },
+                new Book
+                {
+                    BookId = 3,
+                    Title = "Pride and Prejudice",
+                    AuthorId = 2
+                }
+            );
+
         }
     }
 }

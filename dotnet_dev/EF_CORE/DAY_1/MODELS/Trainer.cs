@@ -15,7 +15,7 @@ namespace EF_CORE.DAY_1.MODELS
         public string Name { get; set; }
         public int ExperienceYears { get; set; }
 
-        public ICollection<Batch> Batches { get; set; }
+        public virtual IEnumerable<Batch> Batches { get; set; }
 
     }
 }

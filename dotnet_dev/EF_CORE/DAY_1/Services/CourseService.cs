@@ -60,5 +60,24 @@ namespace EF_CORE.DAY_1.Services
                 }
             }
         }
+
+        public  void GetCourseBathces(int courseId)
+        {
+            var course = _dbContext.Courses.FirstOrDefault(course => course.Id == courseId);
+
+            if (course!=null)
+            {
+
+                _dbContext.Entry(course).Collection(course => course.Batches).Load();
+            }
+
+            Console.WriteLine(course.Title);
+            foreach (var item in course.Batches)
+            {
+                Console.WriteLine("TRAINER ID :"+ item.TrainerId + "START DATE :" + item.StartDate);
+
+            }
+
+        }
     }
 }

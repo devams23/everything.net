@@ -1,5 +1,6 @@
 ﻿using EF_CORE.DAY_1.DATA;
 using EF_CORE.DAY_1.MODELS;
+using EF_CORE.DAY_1.Utils;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -36,29 +37,48 @@ namespace EF_CORE.DAY_1.Services
 
         }
 
-        public Student? UpdateStudent(Student student)
+        public Student? UpdateStudent(Student newstudent)
         {
             try
             {
-                var oldstudent = _dbContext?.Students.FirstOrDefault(std => std.Id == student.Id) ?? null;
-    
+                var oldstudent = _dbContext?.Students.FirstOrDefault(std => std.Id == newstudent.Id) ?? null;
+                if (oldstudent != null)
+                {
+
+                    HelperMethods.DetachEntity(oldstudent, _dbContext);
+                }
 
                 if (oldstudent == null)
                 {
                     Console.WriteLine("no student found with that ID");
                     return null;
                 }
-                //Console.WriteLine(oldstudent.Name);
 
-                oldstudent.Name = student.Name;
-                oldstudent.Email = student.Email;
+                Console.WriteLine(oldstudent.Name); 
+
+                if (string.IsNullOrEmpty(newstudent.Name))
+                {
+                    oldstudent.Name = newstudent.Name;
+                    
+                }
+
+                if (string.IsNullOrEmpty(newstudent.Email))
+                {
+                    
+                    oldstudent.Email = newstudent.Email;
+                }
+
+                Console.WriteLine("OLD STUDENT DATA:\n " + "EMAIL:" + oldstudent.Email + "\n " + "NAME: " + oldstudent.Name);
 
                 _dbContext.SaveChanges();
+
+                var Updatedstudent = _dbContext?.Students.FirstOrDefault(std => std.Id == newstudent.Id);
+                Console.WriteLine("NEW STUDENT DATA:\n " + "EMAIL:" + Updatedstudent.Email + "\n " + "NAME: " + Updatedstudent.Name);
 
                 Console.WriteLine("SUCCESS! STUDENT UPDATED");
 
 
-                return student;
+                return newstudent;
 
 
             }
@@ -71,6 +91,27 @@ namespace EF_CORE.DAY_1.Services
 
         }
 
+        public void DisplayStudentWithBatches()
+        {
+            var students_bathes = _dbContext.Students.Include(std => std.Courses).ThenInclude(course => course.Batches);
+
+            foreach (var students in students_bathes)
+            {
+                Console.WriteLine("STUDENT --->" + students.Name);
+                foreach (var course in students.Courses)
+                {
+                    Console.WriteLine("COURSE TITLE--->" + course.Title);
+                    foreach (var batch in course.Batches)
+                    {
+
+                        Console.WriteLine("BATCH START--->"+batch.StartDate);
+
+
+                    }
+                }
+            }
+
+        }
         public string EnrollStudenInMultiplenCourses(string studentId  , string [] courseIds )
         {
 
@@ -84,6 +125,8 @@ namespace EF_CORE.DAY_1.Services
 
 
                 student.Courses.Add(course);
+                
+                
 
                 _dbContext.SaveChanges();
 
@@ -104,6 +147,8 @@ namespace EF_CORE.DAY_1.Services
             }
 
         }
+
+
     }
 
 }

@@ -1,6 +1,7 @@
 ﻿using EF_CORE.DAY_1.DATA;
 using EF_CORE.DAY_1.MODELS;
 using EF_CORE.DAY_1.Services;
+using EF_CORE.DAY_1.Utils;
 
 // File created on 2025-01-29
 namespace EF_CORE.DAY_1
@@ -12,14 +13,15 @@ namespace EF_CORE.DAY_1
 
             using (var _dbcontext = new AppDbContext())
             {
-                StudentService stdservice = new StudentService(_dbcontext);
+                StudentService studentService = new StudentService(_dbcontext);
                 CourseService courseService = new CourseService(_dbcontext);
                 BatchService batchService = new BatchService(_dbcontext);
                 TrainerService trainerService = new TrainerService(_dbcontext);
+                AuthorService authorService = new AuthorService(_dbcontext);
 
 
                 //batchService.getTrainers();
-                
+
                 while (true)
                 {
                     Console.WriteLine("----------------CHOOSE A NUMBER FROM THE MENU BELOW-----------");
@@ -31,91 +33,70 @@ namespace EF_CORE.DAY_1
                     Console.WriteLine("6. Create Batch");
                     Console.WriteLine("7. Show Course with Students");
                     Console.WriteLine("8. Show Trainer with Batches");
-
-                    Console.WriteLine("9. Exit");
-                    //Console.WriteLine("10. Update Student");
-                    //Console.WriteLine("11. Delete Student");
+                    Console.WriteLine("9. Update Student");
+                    Console.WriteLine("10. Delete Trainer");
+                    Console.WriteLine("11. Display Student With Batches");
+                    Console.WriteLine("12. Get Course WITH Bathces");
+                    Console.WriteLine("13. Get Authors With Books");
+                    Console.WriteLine("20. Exit");
 
                     string? MenuNumber = Console.ReadLine();
 
                     if (MenuNumber != null)
                     {
-                        
-                    switch (MenuNumber)
-                    {
-                        case "1":
-                            {
-                                Console.WriteLine("Enter Student Name");
-                                var name = Console.ReadLine();
-                                Console.WriteLine("Enter Student Email");
-                                var email = Console.ReadLine();
 
-                                Student std1 = new Student()
+                        switch (MenuNumber)
+                        {
+                            case "1":
                                 {
-                                    Name = name,
-                                    Email = email
-                                };
-
-                                stdservice.AddSingleStudent(std1);
-
-                                break;
-                            }
-
-                            case "10":
-                                {
-                                    Console.WriteLine("--STUDENT DATA TO BE UPDATED--");
-                                    Console.WriteLine("Enter the Student Id:");
-
-                                    int.TryParse(Console.ReadLine() , out int id);
-
-                                    Console.WriteLine("Enter New Name:");
+                                    Console.WriteLine("Enter Student Name");
                                     var name = Console.ReadLine();
-                                    Console.WriteLine("Enter New Email");
+                                    Console.WriteLine("Enter Student Email");
                                     var email = Console.ReadLine();
 
                                     Student std1 = new Student()
                                     {
-                                        Id = id,
                                         Name = name,
                                         Email = email
                                     };
 
-                                    Console.WriteLine(std1.Created);
-                                    stdservice.UpdateStudent(std1);
+                                    studentService.AddSingleStudent(std1);
 
                                     break;
                                 }
 
+
+
                             case "2":
-                            {
-                                Console.WriteLine("Enter Title ");
-                                var title = Console.ReadLine();
-                                Console.WriteLine("Enter Fees ");
-                                var fees = Console.ReadLine();
-                                decimal.TryParse(fees, out decimal feesdec);
-                                Console.WriteLine("Enter DurationInMonths ");
-
-                                bool Parsed = int.TryParse(Console.ReadLine(), out int durationInMonths);
-                                if (Parsed)
                                 {
-                                    Course course1 = new Course()
+                                    Console.WriteLine("Enter Title ");
+                                    var title = Console.ReadLine();
+                                    Console.WriteLine("Enter Fees ");
+                                   
+                                    decimal.TryParse(Console.ReadLine(), out decimal feesdec);
+                                    Console.WriteLine("Enter DurationInMonths ");
+
+                                    bool Parsed = int.TryParse(Console.ReadLine(), out int durationInMonths);
+                                    if (Parsed)
                                     {
-                                        Title = title,
-                                        Fees = feesdec,
-                                        DurationInMonths = durationInMonths
+                                        Course course1 = new Course()
+                                        {
+                                            Title = title,
+                                            Fees = feesdec,
+                                            DurationInMonths = durationInMonths
 
-                                    };
-                                    courseService.AddSingleCourse(course1);
+                                        };
+                                        courseService.AddSingleCourse(course1);
+                                    }
+
+
+
+                                    break;
+
                                 }
-
-
-
-                                break;
-
-                            }
                             case "3":
                                 {
-                                    var students = stdservice.GetAllStudents();
+                                    var students = studentService.GetAllStudents();
                                     Console.WriteLine("length:" + students.Count());
                                     break;
                                 }
@@ -128,7 +109,7 @@ namespace EF_CORE.DAY_1
                             case "5":
                                 {
 
-                                    var students = stdservice.GetAllStudents();
+                                    var students = studentService.GetAllStudents();
                                     Console.WriteLine("---LIST OF STUDENTS----");
                                     foreach (var item in students)
                                     {
@@ -146,18 +127,16 @@ namespace EF_CORE.DAY_1
 
                                     // Split the string into an array and convert to a List<string>
                                     //var StudentId = stdinput.Split(delimiter).ToArray();
-                                    
+
                                     char delimiter = ',';
                                     Console.WriteLine("Enter the Courses Id in order (comma separated)");
                                     string? courseinput = Console.ReadLine();
-                                    
+
 
                                     // Split the string into an array and convert to a List<string>
                                     var CourseList = courseinput.Split(delimiter).ToArray();
 
-                                    stdservice.EnrollStudenInMultiplenCourses(studentinput, CourseList);
-
-
+                                    studentService.EnrollStudenInMultiplenCourses(studentinput, CourseList);
                                     break;
                                 }
 
@@ -167,8 +146,9 @@ namespace EF_CORE.DAY_1
                                 {
                                     Console.WriteLine("Enter course Id");
                                     bool Parsed = int.TryParse(Console.ReadLine(), out int courseId);
+
                                     Console.WriteLine("Enter Trainer Id");
-                                    
+
                                     int.TryParse(Console.ReadLine(), out int TrainerId);
                                     Console.WriteLine("Enter Year Date (YYYY)");
                                     int.TryParse(Console.ReadLine(), out int year);
@@ -176,8 +156,8 @@ namespace EF_CORE.DAY_1
                                     int.TryParse(Console.ReadLine(), out int month);
                                     Console.WriteLine("Enter Day (DD)");
                                     int.TryParse(Console.ReadLine(), out int day);
-                                    DateTime startDate = new DateTime(year , month , day);
-                                    batchService.AddSingleBatch(courseId, TrainerId , startDate);
+                                    DateTime startDate = new DateTime(year, month, day);
+                                    batchService.AddSingleBatch(courseId, TrainerId, startDate);
 
                                     break;
                                 }
@@ -189,17 +169,75 @@ namespace EF_CORE.DAY_1
 
                             case "8":
                                 {
-                                    trainerService.ShowTrainerwithBatches(); 
+                                    trainerService.ShowTrainerwithBatches();
                                     break;
                                 }
-                        default:
-                            break;
 
-                    }
-                    if (MenuNumber.Equals("9"))
-                    {
-                        break;
-                    }
+                            case "9":
+                                {
+                                    Console.WriteLine("--STUDENT DATA TO BE UPDATED--");
+                                    Console.WriteLine("Enter the Student Id:");
+
+                                    int.TryParse(Console.ReadLine(), out int id);
+
+                                    Console.WriteLine("Enter New Name:");
+                                    var name = Console.ReadLine();
+
+                                    Console.WriteLine("Enter New Email");
+                                    var email = Console.ReadLine();
+
+                                    Student std1 = new Student()
+                                    {
+                                        Id = id,
+                                        Name = name,
+                                        Email = email
+                                    };
+
+                                    Console.WriteLine(std1.Created);
+                                    studentService.UpdateStudent(std1);
+
+                                    break;
+                                }
+
+                            case "10":
+                                {
+                                    Console.WriteLine("Enter Trainer Id");
+
+                                    int.TryParse(Console.ReadLine(), out int TrainerId);
+
+                                    trainerService.DeleteTrainer(TrainerId);
+
+                                    break;
+                                }
+                            case "11":
+                                {
+                                    studentService.DisplayStudentWithBatches();
+                                    break;
+                                }
+                            case "12":
+                                {
+                                    Console.WriteLine("Enter Course Id");
+
+                                    int.TryParse(Console.ReadLine(), out int CourseId);
+                                    courseService.GetCourseBathces(CourseId);
+                                    break;
+                                }
+                            case "13":
+                                {
+                                    //Console.WriteLine("Enter Course Id");
+
+                                    //int.TryParse(Console.ReadLine(), out int CourseId);
+                                    authorService.GetAuthorBooks();
+                                    break;
+                                }
+                            default:
+                                break;
+
+                        }
+                        if (MenuNumber.Equals("20"))
+                        {
+                            break;
+                        }
                     }
 
                 }

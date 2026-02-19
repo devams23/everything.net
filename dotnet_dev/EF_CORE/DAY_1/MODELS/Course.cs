@@ -21,9 +21,9 @@ namespace EF_CORE.DAY_1.MODELS
         [Range(0,48 ,ErrorMessage="A course Can't be too long.")] 
         public int DurationInMonths { get; set; } = 0;
 
-        public ICollection<Batch> Batches { get; set; }  
+        public virtual IEnumerable<Batch> Batches { get; set; }  
 
-        public ICollection<Student> Students { get; set; }
+        public virtual IEnumerable <Student> Students { get; set; }
 
 
 

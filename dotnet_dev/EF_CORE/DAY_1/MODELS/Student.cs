@@ -21,6 +21,6 @@ namespace EF_CORE.DAY_1.MODELS
 
 
         public DateTime Created { get; set; }
-        public ICollection<Course> Courses { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }
