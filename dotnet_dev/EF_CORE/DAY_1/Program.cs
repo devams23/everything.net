@@ -15,21 +15,26 @@ namespace EF_CORE.DAY_1
                 StudentService stdservice = new StudentService(_dbcontext);
                 CourseService courseService = new CourseService(_dbcontext);
                 BatchService batchService = new BatchService(_dbcontext);
+                TrainerService trainerService = new TrainerService(_dbcontext);
 
-                batchService.getTrainers();
+
+                //batchService.getTrainers();
                 
                 while (true)
                 {
                     Console.WriteLine("----------------CHOOSE A NUMBER FROM THE MENU BELOW-----------");
                     Console.WriteLine("1. Add Student");
-                    //Console.WriteLine("2. Update Student");
-                    //Console.WriteLine("3. Delete Student");
-                    Console.WriteLine("4. Add Course");
-                    //Console.WriteLine("5. Update Course");
-                    //Console.WriteLine("6. Delete Course");
-                    Console.WriteLine("7. Show All Students");
-                    Console.WriteLine("8. Show All Courses");
+                    Console.WriteLine("2. Add Course");
+                    Console.WriteLine("3. Show All Students");
+                    Console.WriteLine("4. Show All Courses");
+                    Console.WriteLine("5. Enroll Student In Multiple Courses");
+                    Console.WriteLine("6. Create Batch");
+                    Console.WriteLine("7. Show Course with Students");
+                    Console.WriteLine("8. Show Trainer with Batches");
+
                     Console.WriteLine("9. Exit");
+                    //Console.WriteLine("10. Update Student");
+                    //Console.WriteLine("11. Delete Student");
 
                     string? MenuNumber = Console.ReadLine();
 
@@ -56,7 +61,7 @@ namespace EF_CORE.DAY_1
                                 break;
                             }
 
-                            case "2":
+                            case "10":
                                 {
                                     Console.WriteLine("--STUDENT DATA TO BE UPDATED--");
                                     Console.WriteLine("Enter the Student Id:");
@@ -81,7 +86,7 @@ namespace EF_CORE.DAY_1
                                     break;
                                 }
 
-                            case "4":
+                            case "2":
                             {
                                 Console.WriteLine("Enter Title ");
                                 var title = Console.ReadLine();
@@ -108,7 +113,19 @@ namespace EF_CORE.DAY_1
                                 break;
 
                             }
-                            case "6":
+                            case "3":
+                                {
+                                    var students = stdservice.GetAllStudents();
+                                    Console.WriteLine("length:" + students.Count());
+                                    break;
+                                }
+                            case "4":
+                                {
+                                    var courses = courseService.GetAllCourses();
+                                    Console.WriteLine("length:" + courses?.Count());
+                                    break;
+                                }
+                            case "5":
                                 {
 
                                     var students = stdservice.GetAllStudents();
@@ -124,13 +141,13 @@ namespace EF_CORE.DAY_1
                                         Console.WriteLine(item.Id + "----" + item.Title);
                                     }
 
-                                    Console.WriteLine("Enter the students Id in order (comma separated)");
+                                    Console.WriteLine("Enter the students Id");
                                     string? studentinput = Console.ReadLine();
-                                    char delimiter = ',';
 
                                     // Split the string into an array and convert to a List<string>
                                     //var StudentId = stdinput.Split(delimiter).ToArray();
                                     
+                                    char delimiter = ',';
                                     Console.WriteLine("Enter the Courses Id in order (comma separated)");
                                     string? courseinput = Console.ReadLine();
                                     
@@ -143,19 +160,38 @@ namespace EF_CORE.DAY_1
 
                                     break;
                                 }
-                            case "7":
-                            {
-                                var students = stdservice.GetAllStudents();
-                                Console.WriteLine("length:" + students.Count());
-                                break;
-                            }
-                        case "8":
-                            {
-                                var courses = courseService.GetAllCourses();
-                                Console.WriteLine("length:" + courses?.Count());
-                                break;
-                            }
 
+
+                            // Adding batch
+                            case "6":
+                                {
+                                    Console.WriteLine("Enter course Id");
+                                    bool Parsed = int.TryParse(Console.ReadLine(), out int courseId);
+                                    Console.WriteLine("Enter Trainer Id");
+                                    
+                                    int.TryParse(Console.ReadLine(), out int TrainerId);
+                                    Console.WriteLine("Enter Year Date (YYYY)");
+                                    int.TryParse(Console.ReadLine(), out int year);
+                                    Console.WriteLine("Enter Month (MM)");
+                                    int.TryParse(Console.ReadLine(), out int month);
+                                    Console.WriteLine("Enter Day (DD)");
+                                    int.TryParse(Console.ReadLine(), out int day);
+                                    DateTime startDate = new DateTime(year , month , day);
+                                    batchService.AddSingleBatch(courseId, TrainerId , startDate);
+
+                                    break;
+                                }
+                            case "7":
+                                {
+                                    courseService.ShowCoursewithStudents();
+                                    break;
+                                }
+
+                            case "8":
+                                {
+                                    trainerService.ShowTrainerwithBatches(); 
+                                    break;
+                                }
                         default:
                             break;
 

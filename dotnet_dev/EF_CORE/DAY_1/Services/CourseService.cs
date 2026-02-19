@@ -56,7 +56,7 @@ namespace EF_CORE.DAY_1.Services
                 Console.WriteLine("Course : " + course.Title);
                 foreach (var student in course.Students)
                 {
-                    Console.WriteLine(student);
+                    Console.WriteLine(student.Name);
                 }
             }
         }

@@ -1,9 +1,7 @@
 ﻿using EF_CORE.DAY_1.DATA;
 using EF_CORE.DAY_1.MODELS;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace EF_CORE.DAY_1.Services
 {
@@ -16,18 +14,20 @@ namespace EF_CORE.DAY_1.Services
             _dbContext = _appDbContext;
         }
 
-        public string AddSingleBatch(string courseId , string trainerId)
+        public int? AddSingleBatch(int courseId , int trainerId , DateTime date )
         {
             try
             {
-                int.TryParse(courseId, out var intcourseId);
-                int.TryParse(trainerId, out var inttrainerId);
 
-                var course = _dbContext.Courses.First(course => course.Id == intcourseId);
-                var trainer = _dbContext.Trainers.First(trainer => trainer.Id == inttrainerId);
+                //int.TryParse(courseId, out var intcourseId);
+                //int.TryParse(trainerId, out var inttrainerId);
 
-                _dbContext.Batches.Add(new Batch { Course = course , Trainer = trainer});
+                var course = _dbContext.Courses.First(course => course.Id == courseId);
+                var trainer = _dbContext.Trainers.First(trainer => trainer.Id == trainerId);
 
+                _dbContext.Batches.Add(new Batch { Course = course , Trainer = trainer , StartDate = date});
+
+                _dbContext.SaveChanges();
                 return courseId;
             }
             catch (Exception ex)

@@ -77,10 +77,11 @@ namespace EF_CORE.DAY_1.Services
             try
             {
                 int.TryParse(studentId, out var intStdId);
-                var student = _dbContext.Students.First(std => std.Id == intStdId);
+                var student = _dbContext.Students.Include(std => std.Courses).FirstOrDefault(std => std.Id == intStdId);
 
                 int.TryParse(courseIds[0], out int courseIdint);
-                var course = _dbContext.Courses.First(course => course.Id == courseIdint);
+                var course = _dbContext.Courses.FirstOrDefault(course => course.Id == courseIdint);
+
 
                 student.Courses.Add(course);
 
