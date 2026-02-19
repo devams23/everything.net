@@ -1,16 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace EF_CORE.DAY_1.MODELS
 {
-    internal class Student
+    public class Student
     {
         // this will be an Identity , by default
+        [Key]
         public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public DateTime Created { get; set; } = DateTime.Now;
 
+        [Required]
+        [StringLength(50)]
+        public string Name { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Email { get; set; }
+
+
+        public DateTime Created { get; set; }
+        public ICollection<Course> Courses { get; set; }
     }
 }
