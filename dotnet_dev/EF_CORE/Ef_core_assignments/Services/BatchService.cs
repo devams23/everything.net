@@ -52,6 +52,18 @@ namespace EF_CORE.DAY_1.Services
 
         }
 
+      
+        // this is N+1 query Problem Function
+
+        public void GetBatchWithCourses()
+        {
+            var batches = _dbContext.Batches.ToList();
+
+            foreach (var batch in batches)
+            {
+                Console.WriteLine(batch.Course.Title);
+            }
+        }
 
     }
 }

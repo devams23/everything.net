@@ -7,12 +7,11 @@ namespace EF_CORE.DAY_1.MODELS
 {
     public class Student
     {
-        // this will be an Identity , by default
-        [Key]
-        public int Id { get; set; }
+
+        public int StudentId { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(50 , MinimumLength = 5)]
         public string Name { get; set; }
 
         [Required]

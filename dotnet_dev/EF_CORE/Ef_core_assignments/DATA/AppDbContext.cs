@@ -1,5 +1,7 @@
 ﻿using EF_CORE.DAY_1.MODELS;
+using EF_CORE.Ef_core_assignments.Configuration;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 
 
 namespace EF_CORE.DAY_1.DATA
@@ -26,6 +28,18 @@ namespace EF_CORE.DAY_1.DATA
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            /*
+             The default schema that EF Core uses to create database objects is 
+            dbo. we  can change this behaviour using the ModelBuilder's HasDefaultSchema method:
+            
+            modelBuilder.HasDefaultSchema("MyCustomSchema");
+
+            // also 
+
+             */
+            modelBuilder.Ignore<Course>();
+            modelBuilder.ApplyConfiguration(new StudentConfiguration());
+
             modelBuilder.Entity<Trainer>(b =>
             {
                 b.HasData(

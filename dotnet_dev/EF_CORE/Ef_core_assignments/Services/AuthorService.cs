@@ -16,24 +16,27 @@ namespace EF_CORE.DAY_1.Services
         public void GetAuthorBooks()
         {
 
+            //var author_books = _appDbContext.Authors.ToList();
+
+
+            //foreach (var author in author_books)
+            //{
+            //    Console.WriteLine("Author -- >" + author.FirstName);
+            //    foreach (var item in author.Books)
+            //    {
+            //        Console.WriteLine(item.Title);
+            //    }
+            //}
+
             var author_books = _appDbContext.Authors.First();
 
 
+           Console.WriteLine("Author -- >" + author_books.FirstName);
             foreach (var book in author_books.Books)
             {
-                Console.WriteLine(book.Title);
+                    Console.WriteLine(book.Title);
+
             }
-            //foreach (var author in author_books)
-            //{
-            //    Console.WriteLine(author.FirstName);
-
-            //    //Console.WriteLine("iff books"+author?.Books);
-
-            //    foreach(var book in author.Books)
-            //    {
-            //        Console.WriteLine(book.Title);
-            //    }
-            //}
         }
 
     }
