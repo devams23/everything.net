@@ -62,10 +62,10 @@ namespace EF_CORE.DAY_1.DATA
             modelBuilder.Entity<Student>(b =>
             {
                 b.HasData(
-                    new Student { Id=1, Name = "Devam" , Email = "devam@chill.com" },
-                    new Student {Id=2, Name = "Krunal" , Email = "krunal@chill.com" },
-                    new Student { Id = 3, Name = "Niken" , Email = "niken@chill.com" },
-                    new Student { Id = 4, Name = "Aayush" , Email = "Aayush90@chill.com" }
+                    new Student { StudentId=1, Name = "Devam" , Email = "devam@chill.com" },
+                    new Student { StudentId = 2, Name = "Krunal" , Email = "krunal@chill.com" },
+                    new Student { StudentId = 3, Name = "Niken" , Email = "niken@chill.com" },
+                    new Student { StudentId = 4, Name = "Aayush" , Email = "Aayush90@chill.com" }
 
                     );
             });

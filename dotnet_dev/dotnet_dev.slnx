@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="EF_CORE/EF_CORE.csproj" />
+  <Project Path="EF_CORE_Final_PROJECT/EF_CORE_Final_PROJECT.csproj" />
 
 </Solution>

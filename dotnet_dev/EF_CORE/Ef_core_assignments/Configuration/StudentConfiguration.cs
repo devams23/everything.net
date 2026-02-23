@@ -13,7 +13,7 @@ namespace EF_CORE.Ef_core_assignments.Configuration
         {
             builder.HasKey(std => std.StudentId);
             
-
+            
         }
     }
 }

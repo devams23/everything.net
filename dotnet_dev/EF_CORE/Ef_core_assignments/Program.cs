@@ -113,7 +113,7 @@ namespace EF_CORE.DAY_1
                                     Console.WriteLine("---LIST OF STUDENTS----");
                                     foreach (var item in students)
                                     {
-                                        Console.WriteLine(item.Id + "----" + item.Name);
+                                        Console.WriteLine(item.StudentId + "----" + item.Name);
                                     }
                                     var courses = courseService.GetAllCourses();
                                     Console.WriteLine("---LIST OF Courses----");
@@ -188,7 +188,7 @@ namespace EF_CORE.DAY_1
 
                                     Student std1 = new Student()
                                     {
-                                        Id = id,
+                                        StudentId = id,
                                         Name = name,
                                         Email = email
                                     };

@@ -41,7 +41,7 @@ namespace EF_CORE.DAY_1.Services
         {
             try
             {
-                var oldstudent = _dbContext?.Students.FirstOrDefault(std => std.Id == newstudent.Id) ?? null;
+                var oldstudent = _dbContext?.Students.FirstOrDefault(std => std.StudentId == newstudent.StudentId) ?? null;
                 if (oldstudent != null)
                 {
 
@@ -72,7 +72,7 @@ namespace EF_CORE.DAY_1.Services
 
                 _dbContext.SaveChanges();
 
-                var Updatedstudent = _dbContext?.Students.FirstOrDefault(std => std.Id == newstudent.Id);
+                var Updatedstudent = _dbContext?.Students.FirstOrDefault(std => std.StudentId == newstudent.StudentId);
                 Console.WriteLine("NEW STUDENT DATA:\n " + "EMAIL:" + Updatedstudent.Email + "\n " + "NAME: " + Updatedstudent.Name);
 
                 Console.WriteLine("SUCCESS! STUDENT UPDATED");
@@ -118,7 +118,7 @@ namespace EF_CORE.DAY_1.Services
             try
             {
                 int.TryParse(studentId, out var intStdId);
-                var student = _dbContext.Students.Include(std => std.Courses).FirstOrDefault(std => std.Id == intStdId);
+                var student = _dbContext.Students.Include(std => std.Courses).FirstOrDefault(std => std.StudentId == intStdId);
 
                 int.TryParse(courseIds[0], out int courseIdint);
                 var course = _dbContext.Courses.FirstOrDefault(course => course.Id == courseIdint);
