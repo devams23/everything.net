@@ -40,6 +40,21 @@ namespace EF_CORE_Final_PROJECT.Services
 
             var departmentReport = _context.Departments.Include(dep => dep.Employees).ThenInclude(emp => emp.TrainingEnrolledEmployees).First(dep => dep.Id == departmentId);
 
+            var departmentreport = _context.Departments
+                                            .Select(dep => new {
+                                                Department = dep.Name,
+                                                TotalEmployees = dep.Employees.Count(),
+
+                                                EnrolledEmployees = dep.Employees.Select(emp => new
+                                                {
+                                                    EmployeeName = emp.Name,
+                                                    TrainingCount = emp.TrainingEnrolledEmployees.Count()
+
+                                                }).ToList()
+
+                                            });
+
+
             Console.WriteLine("DEPARTMENT: " + departmentReport.Name);
             Console.WriteLine("Total Employees: " + departmentReport.Employees.Count());
 
@@ -47,6 +62,13 @@ namespace EF_CORE_Final_PROJECT.Services
             // Only count employees that are enrolled in at least one training
             Console.WriteLine("Employees Enrolled in Training: " + departmentReport.Employees.Count(emp => emp.TrainingEnrolledEmployees.Count != 0));
 
+
+            Console.WriteLine("DEPARTMENT: " + .departmentreport.Department);
+            Console.WriteLine("Total Employees: " + departmentReport.Employees.Count());
+
+
+            // Only count employees that are enrolled in at least one training
+            Console.WriteLine("Employees Enrolled in Training: " + departmentReport.Employees.Count(emp => emp.TrainingEnrolledEmployees.Count != 0));
 
         }
     }
