@@ -4,7 +4,7 @@ namespace WebApplication_api.Services.Services
 {
     public class ScopedGUIService : IScopedGUI
     {
-        public Guid scopedGUID;
+        public Guid scopedGUID { get; }
 
         public ScopedGUIService()
         {

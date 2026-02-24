@@ -17,13 +17,19 @@ namespace WebApplication_api.Controllers
         private readonly ISingletonGUI singletonGUIService;
         private readonly IScopedGUI scopedGUIService;
 
+        private readonly ITransientGUI transientGUIService2;
+        private readonly IScopedGUI scopedGUIService2;
 
-        public ProductCatalogController(ProductCatalogService _productCatalogService , ITransientGUI _transientGUIService, ISingletonGUI _singletonGUIService, IScopedGUI _scopedGUIService)
+        public ProductCatalogController(ProductCatalogService _productCatalogService, IScopedGUI _scopedGUIService2 , ITransientGUI _transientGUIService2, ITransientGUI _transientGUIService, ISingletonGUI _singletonGUIService, IScopedGUI _scopedGUIService)
         {
             productCatalogService = _productCatalogService;
             transientGUIService = _transientGUIService;
             singletonGUIService = _singletonGUIService;
             scopedGUIService = _scopedGUIService;
+            transientGUIService2 = _transientGUIService2;
+            scopedGUIService2 = _scopedGUIService2;
+
+
         }
 
         [HttpGet]
@@ -92,11 +98,18 @@ namespace WebApplication_api.Controllers
             var singletonGuid = singletonGUIService.GetGuid();
             var scopedGuid = scopedGUIService.GetGuid();
 
+            var transientGuid2 = transientGUIService2.GetGuid();
+        
+            var scopedGuid2 = scopedGUIService2.GetGuid();
             return Ok(new
             {
                 Transient = transientGuid,
                 Singleton = singletonGuid,
-                Scoped = scopedGuid
+                Scoped = scopedGuid,
+                
+                Transient_ = transientGuid2,
+
+                Scoped_ = scopedGuid2
             });
         }
     }

@@ -2,6 +2,7 @@
 {
     public interface ISingletonGUI
     {
+        public Guid singletonGUID { get; }
         public Guid GetGuid();
     }
 }

@@ -4,7 +4,7 @@ namespace WebApplication_api.Services.Services
 {
     public class TransientGUIService : ITransientGUI
     {
-        public Guid transientGUID;
+        public Guid transientGUID { get; }
 
         public TransientGUIService()
         {

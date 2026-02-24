@@ -2,6 +2,7 @@
 {
     public interface ITransientGUI
     {
+        public Guid transientGUID { get; }
         public Guid GetGuid();
     }
 }

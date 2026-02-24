@@ -4,15 +4,15 @@ namespace WebApplication_api.Services.Services
 {
     public class SingletonGUIService : ISingletonGUI
     {
-        public Guid singletonGUI;
+        public Guid singletonGUID { get; }
 
         public SingletonGUIService()
         {
-            singletonGUI = Guid.NewGuid();
+            singletonGUID = Guid.NewGuid();
         }
         public Guid GetGuid()
         {
-            return singletonGUI;
+            return singletonGUID;
         }
 
     }
