@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|solutionrelative:webapplication_api\\controllers\\productcatalogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplication_api\\services\\services\\scopedguiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|solutionrelative:webapplication_api\\services\\services\\scopedguiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplication_api\\services\\services\\singletonguiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|solutionrelative:webapplication_api\\services\\services\\singletonguiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplication_api\\services\\services\\transientguiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|solutionrelative:webapplication_api\\services\\services\\transientguiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplication_api\\services\\services\\scopedguiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|solutionrelative:webapplication_api\\services\\services\\scopedguiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2F36F070-E36D-C578-074C-BFA7FF28AE0E}|WebApplication_api\\WebApplication_api.csproj|d:\\bacancy_training\\.net\\backend_explore\\webapplication_api\\services\\interface\\isingletongui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -130,8 +130,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductCatalogController.cs",
+              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Controllers\\ProductCatalogController.cs",
+              "RelativeDocumentMoniker": "WebApplication_api\\Controllers\\ProductCatalogController.cs",
+              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Controllers\\ProductCatalogController.cs",
+              "RelativeToolTip": "WebApplication_api\\Controllers\\ProductCatalogController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAG4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T16:04:55.466Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -146,21 +160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProductCatalogController.cs",
-              "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Controllers\\ProductCatalogController.cs",
-              "RelativeDocumentMoniker": "WebApplication_api\\Controllers\\ProductCatalogController.cs",
-              "ToolTip": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Controllers\\ProductCatalogController.cs*",
-              "RelativeToolTip": "WebApplication_api\\Controllers\\ProductCatalogController.cs*",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAwwG4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T16:04:55.466Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "ScopedGUIService.cs",
               "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Services\\Services\\ScopedGUIService.cs",
               "RelativeDocumentMoniker": "WebApplication_api\\Services\\Services\\ScopedGUIService.cs",
@@ -173,7 +173,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "TransientGUIService.cs",
               "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Services\\Services\\TransientGUIService.cs",
               "RelativeDocumentMoniker": "WebApplication_api\\Services\\Services\\TransientGUIService.cs",
@@ -186,7 +186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ITransientGUI.cs",
               "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Services\\Interface\\ITransientGUI.cs",
               "RelativeDocumentMoniker": "WebApplication_api\\Services\\Interface\\ITransientGUI.cs",
@@ -225,7 +225,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SingletonGUIService.cs",
               "DocumentMoniker": "D:\\bacancy_training\\.net\\backend_explore\\WebApplication_api\\Services\\Services\\SingletonGUIService.cs",
               "RelativeDocumentMoniker": "WebApplication_api\\Services\\Services\\SingletonGUIService.cs",

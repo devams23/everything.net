@@ -1,6 +1,6 @@
 ﻿using WebApplication_api.Services.Interface;
 
-namespace WebApplication_api.Services.Services
+namespace WebApplication_api.Services.Service
 {
     public class ScopedGUIService : IScopedGUI
     {

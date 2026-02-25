@@ -25,7 +25,6 @@ D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\st
 D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\staticwebassets.development.json
 D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\swae.build.ex.cache
-D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\WebAppli.CBD08D66.Up2Date
 D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\WebApplication_api.dll
 D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\refint\WebApplication_api.dll
@@ -33,3 +32,8 @@ D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\We
 D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\WebApplication_api.genruntimeconfig.cache
 D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\ref\WebApplication_api.dll
 D:\bacancy_training\.net\backend_explore\WebApplication_api\obj\Debug\net10.0\WebApplication_api.sourcelink.json
+D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\AutoMapper.dll
+D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll

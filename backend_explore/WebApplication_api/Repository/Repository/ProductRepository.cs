@@ -1,4 +1,4 @@
-﻿using EF_CORE_Final_PROJECT.Data;
+﻿using WebApplication_api.Data;
 using WebApplication_api.Repository.Interface;
 using WebApplication_api.Repository.Models;
 
@@ -57,6 +57,7 @@ namespace WebApplication_api.Repository.Repository
             var product = _context.products.FirstOrDefault(p => p.Id == id);
             if (product != null)
             {
+                
                 _context.products.Remove(product);
                 return true;
             }

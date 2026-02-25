@@ -1,14 +1,14 @@
-using Microsoft.AspNetCore.Authorization;
+
 using Microsoft.AspNetCore.Mvc;
-using WebApplication_api.Repository.Models;
-using WebApplication_api.Services.Services;
+using WebApplication_api.Services.Service;
 using WebApplication_api.Services.Interface;
+using WebApplication_api.Services.DTO;
 
 
 namespace WebApplication_api.Controllers
 {
     [ApiController]
-    [Route("api/products/")]
+    [Route("api/products")]
     public class ProductCatalogController : ControllerBase
     {
 
@@ -20,7 +20,7 @@ namespace WebApplication_api.Controllers
         private readonly ITransientGUI transientGUIService2;
         private readonly IScopedGUI scopedGUIService2;
 
-        public ProductCatalogController(ProductCatalogService _productCatalogService, IScopedGUI _scopedGUIService2 , ITransientGUI _transientGUIService2, ITransientGUI _transientGUIService, ISingletonGUI _singletonGUIService, IScopedGUI _scopedGUIService)
+        public ProductCatalogController(ProductCatalogService _productCatalogService, IScopedGUI _scopedGUIService2, ITransientGUI _transientGUIService2, ITransientGUI _transientGUIService, ISingletonGUI _singletonGUIService, IScopedGUI _scopedGUIService)
         {
             productCatalogService = _productCatalogService;
             transientGUIService = _transientGUIService;
@@ -60,14 +60,24 @@ namespace WebApplication_api.Controllers
 
         }
 
+        [HttpGet("search")]
+        public IActionResult GetProductsByName([FromQuery]string name)
+        {
+            Console.WriteLine("name:---" + name);
+            // var products = productCatalogService.GetProductsByName(name);
+            return Ok("Products retrieved by name: " + name);
+
+        }
+
 
 
         [HttpPost]
-        public IActionResult AddProduct(Product product)
+        public IActionResult AddProduct(ProductDTO product)
         {
             productCatalogService.AddProduct(product);
             return Ok(product);
         }
+
 
         [HttpDelete("{id:int}")]
         public IActionResult DeleteProduct(int id)
@@ -75,20 +85,21 @@ namespace WebApplication_api.Controllers
             bool result = productCatalogService.RemoveProduct(id);
             if (!result)
             {
-                return NotFound("Product not found.");
+                return NotFound("ProductDTOnot found.");
             }
-            return Ok("Product deleted successfully.");
+            return Ok("ProductDTOdeleted successfully.");
         }
 
-        [HttpPut]
-        public IActionResult UpdateProduct(Product product) { 
-
-            bool result = productCatalogService.UpdateProduct(product);
+        [HttpPut("{id:int}")]
+        public IActionResult UpdateProduct(int id, ProductDTO product)
+        {
+            
+            bool result = productCatalogService.UpdateProduct(id, product);
             if (!result)
             {
-                return NotFound("Product not found.");
+                return NotFound("ProductDTOnot found.");
             }
-            return Ok("Product updated successfully.");
+            return Ok("ProductDTOupdated successfully.");
         }
 
         [HttpGet("lifetime")]
@@ -99,18 +110,20 @@ namespace WebApplication_api.Controllers
             var scopedGuid = scopedGUIService.GetGuid();
 
             var transientGuid2 = transientGUIService2.GetGuid();
-        
+
             var scopedGuid2 = scopedGUIService2.GetGuid();
             return Ok(new
             {
                 Transient = transientGuid,
                 Singleton = singletonGuid,
                 Scoped = scopedGuid,
-                
+
                 Transient_ = transientGuid2,
 
                 Scoped_ = scopedGuid2
             });
         }
+
+
     }
 }

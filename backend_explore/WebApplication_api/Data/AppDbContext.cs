@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using WebApplication_api.Repository.Models;
 //using EF_CORE_Final_PROJECT.Config;
 //using EF_CORE_Final_PROJECT.Models;
 //using Microsoft.EntityFrameworkCore;
 
 
-namespace EF_CORE_Final_PROJECT.Data
+namespace WebApplication_api.Data
 {
-    public class AppDbContext
+    public class AppDbContext 
     {
         public List<Product> products;
         public AppDbContext()
