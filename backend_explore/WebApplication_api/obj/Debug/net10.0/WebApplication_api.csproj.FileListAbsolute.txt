@@ -37,3 +37,8 @@ D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\Mi
 D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
 D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
 D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\Mapster.dll
+D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\Mapster.Core.dll
+D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\bacancy_training\.net\backend_explore\WebApplication_api\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll

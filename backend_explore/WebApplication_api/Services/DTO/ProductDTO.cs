@@ -9,7 +9,7 @@ namespace WebApplication_api.Services.DTO
         [MaxLength(100, ErrorMessage = "The {0} can not have more than {1} characters.")]
         public string Name { get; set; }
 
-        [Required]
+        [Required] 
         [MaxLength(500, ErrorMessage = "The {0} can not have more than {1} characters.")]
 
         public string Description { get; set; }

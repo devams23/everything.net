@@ -10,22 +10,27 @@ using WebApplication_api.Services.Service;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-//builder.Services.AddAutoMapper(typeof(Program)); // Register AutoMapper and specify the assembly containing the profiles
- 
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<MappingProfile>();
+});
+
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 
 // Dependency Injection 
 builder.Services.AddScoped<ProductCatalogService>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();    
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddSingleton<AppDbContext>();
 
 //-------------------adding different lifetimes of services-------------------
 builder.Services.AddSingleton<ISingletonGUI, SingletonGUIService>();
-builder.Services.AddScoped<IScopedGUI , ScopedGUIService>();
-builder.Services.AddTransient<ITransientGUI , TransientGUIService>();
+builder.Services.AddScoped<IScopedGUI, ScopedGUIService>();
+builder.Services.AddTransient<ITransientGUI, TransientGUIService>();
 
 
 
@@ -34,14 +39,15 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers(); 
+app.MapControllers();
+
 
 app.Run();
- 
