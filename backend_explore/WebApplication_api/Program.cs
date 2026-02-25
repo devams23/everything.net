@@ -1,6 +1,7 @@
 
-using AutoMapper;
+using Microsoft.OpenApi;
 using WebApplication_api.Data;
+using WebApplication_api.Middlewares;
 using WebApplication_api.Repository.Interface;
 using WebApplication_api.Repository.Repository;
 using WebApplication_api.Services.Interface;
@@ -32,16 +33,54 @@ builder.Services.AddSingleton<ISingletonGUI, SingletonGUIService>();
 builder.Services.AddScoped<IScopedGUI, ScopedGUIService>();
 builder.Services.AddTransient<ITransientGUI, TransientGUIService>();
 
+builder.Services.AddTransient<CustomMiddleware>();
 
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    app.Use(async (context, next) =>
+    {
+        Console.WriteLine("Work that can write to the response. (1)");
+        await next();
+        Console.WriteLine("Work that doesn't write to the response. (1)");
+    });
+ 
+    app.Use(async (context, next) =>
+    {
+        Console.WriteLine("Work that can write to the response. (2)");
+        await next();
+        Console.WriteLine("Work that doesn't write to the response. (2)");
+        //await Task.Delay(4000);
+    });
+
+    app.UseMiddleware<CustomMiddleware>();
+
+
+    app.Run(async (context) =>
+    {
+        Console.WriteLine("This statement isn't reached. (3)");
+        await context.Response.WriteAsync("Terminal middleware reached. Ending the pipeline. (3)");
+        //await next();
+        // Console.WriteLine("This statement isn't reached. (3)");
+    });
+
+ 
+    // app.Run(async context =>
+    // {
+    //     await context.Response.WriteAsync("Terminal middleware reached. Ending the pipeline. (4)");
+    // });
+
 }
+
+
 
 app.UseHttpsRedirection();
 

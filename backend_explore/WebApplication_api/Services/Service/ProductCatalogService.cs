@@ -65,6 +65,7 @@ namespace WebApplication_api.Services.Service
             Product p = _productRepository.GetProductById(id);
            // ProductDTO productDTO = _mapper.Map<ProductDTO>(p);
             ProductDTO productDTO = p.Adapt<ProductDTO>();
+            Console.WriteLine(productDTO.Name);
             return productDTO;
         }
 
