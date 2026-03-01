@@ -1,4 +1,4 @@
-﻿using WebApplication_api.Repository.Models;
+﻿using WebApplication_api.Repository.Models.Entities;
 
 namespace WebApplication_api.Repository.Interface
 {

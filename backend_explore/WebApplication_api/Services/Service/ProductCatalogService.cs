@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Mapster;
 using WebApplication_api.Repository.Interface;
-using WebApplication_api.Repository.Models;
+using WebApplication_api.Repository.Models.Entities;
 using WebApplication_api.Services.DTO;
 
 namespace WebApplication_api.Services.Service

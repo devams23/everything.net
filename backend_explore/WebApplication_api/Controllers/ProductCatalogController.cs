@@ -3,12 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using WebApplication_api.Services.Service;
 using WebApplication_api.Services.Interface;
 using WebApplication_api.Services.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace WebApplication_api.Controllers
 {
     [ApiController]
     [Route("api/products")]
+    [Authorize] // All endpoints require authentication
+
     public class ProductCatalogController : ControllerBase
     {
 
@@ -32,15 +35,25 @@ namespace WebApplication_api.Controllers
 
         }
 
+        /// <summary>
+        /// Get all products - Accessible to all authenticated users (Admin, Vendor, Customer)
+        /// </summary>
         [HttpGet]
+        [Authorize]
         public IActionResult GetAllProducts()
         {
+            var user = User?.Identity?.Name;
+            Console.WriteLine($"GetAllProducts called by user: {user}");
             var products = productCatalogService.GetAllProducts();
             return Ok(products);
         }
 
 
+        /// <summary>
+        /// Get product by ID - Accessible to all authenticated users
+        /// </summary>
         [HttpGet("{id:int}")]
+        [Authorize]
         public IActionResult GetProductById(int id)
         {
             var product = productCatalogService.GetProductById(id);
@@ -51,7 +64,11 @@ namespace WebApplication_api.Controllers
             return Ok(product);
         }
 
+        /// <summary>
+        /// Get products by category - Accessible to all authenticated users
+        /// </summary>
         [HttpGet("category/{categorytype:alpha}")]
+        [Authorize]
         public IActionResult GetProductsByCategory(string categorytype)
         {
             Console.WriteLine("category:---" + categorytype);
@@ -60,8 +77,12 @@ namespace WebApplication_api.Controllers
 
         }
 
+        /// <summary>
+        /// Search products by name - Accessible to all authenticated users
+        /// </summary>
         [HttpGet("search")]
-        public IActionResult GetProductsByName([FromQuery]string name)
+        [Authorize]
+        public IActionResult GetProductsByName([FromQuery] string name)
         {
             Console.WriteLine("name:---" + name);
             // var products = productCatalogService.GetProductsByName(name);
@@ -69,40 +90,60 @@ namespace WebApplication_api.Controllers
 
         }
 
-
-
+        /// <summary>
+        /// Add new product - Accessible only to Admin and Vendor roles
+        /// </summary>
         [HttpPost]
+        [Authorize(Roles = "Admin,Vendor")]
         public IActionResult AddProduct(ProductDTO product)
         {
+            var user = User?.Identity?.Name;
+            var role = User?.FindFirst("role")?.Value;
+            Console.WriteLine($"AddProduct called by user: {user} with role: {role}");
             productCatalogService.AddProduct(product);
-            return Ok(product);
+            return Ok(new { message = "Product added successfully", product });
         }
 
-
+        /// <summary>
+        /// Delete product - Accessible only to Admin role
+        /// </summary>
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteProduct(int id)
         {
+            var user = User?.Identity?.Name;
+            Console.WriteLine($"DeleteProduct called by user: {user}");
             bool result = productCatalogService.RemoveProduct(id);
             if (!result)
             {
-                return NotFound("ProductDTOnot found.");
+                return NotFound("Product not found.");
             }
-            return Ok("ProductDTOdeleted successfully.");
+            return Ok("Product deleted successfully.");
         }
 
+        /// <summary>
+        /// Update product - Accessible to Admin and Vendor roles
+        /// </summary>
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "Admin,Vendor")]
         public IActionResult UpdateProduct(int id, ProductDTO product)
         {
-            
+            var user = User?.Identity?.Name;
+            var role = User?.FindFirst("role")?.Value;
+            Console.WriteLine($"UpdateProduct called by user: {user} with role: {role}");
             bool result = productCatalogService.UpdateProduct(id, product);
             if (!result)
             {
-                return NotFound("ProductDTOnot found.");
+                return NotFound("Product not found.");
             }
-            return Ok("ProductDTOupdated successfully.");
+            return Ok("Product updated successfully.");
         }
 
+        /// <summary>
+        /// Get service lifetimes - Accessible to all authenticated users
+        /// </summary>
         [HttpGet("lifetime")]
+        [Authorize]
         public IActionResult GetGuiLifetimes()
         {
             var transientGuid = transientGUIService.GetGuid();

@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-
 namespace WebApplication_api.Services.DTO
 {
     public class ProductDTO

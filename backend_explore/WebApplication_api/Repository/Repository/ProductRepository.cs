@@ -1,6 +1,6 @@
 ﻿using WebApplication_api.Data;
 using WebApplication_api.Repository.Interface;
-using WebApplication_api.Repository.Models;
+using WebApplication_api.Repository.Models.Entities;
 
 namespace WebApplication_api.Repository.Repository
 {
@@ -34,31 +34,34 @@ namespace WebApplication_api.Repository.Repository
             if (product != null)
             {
                 _context.products.Add(product);
+                //_context.SaveChanges();
+
                 return true;
             }
             return false;
         }
 
-        public bool UpdateProduct(Product product)
+    public bool UpdateProduct(Product product)
+    {
+        var existingProduct = _context.products.FirstOrDefault(p => p.Id == product.Id);
+        if (existingProduct != null)
         {
-            var existingProduct = _context.products.FirstOrDefault(p => p.Id == product.Id);
-            if (existingProduct != null)
-            {
-                existingProduct.Name = product.Name;
-                existingProduct.Description = product.Description;
-                existingProduct.Price = product.Price;
-                existingProduct.Category = product.Category;
-                return true;
-            }
-            return false;
+            existingProduct.Name = product.Name;
+            existingProduct.Description = product.Description;
+            existingProduct.Price = product.Price;
+            existingProduct.Category = product.Category;
+
+            return true;
         }
+        return false;
+    }
         public bool DeleteProduct(int id)
         {
             var product = _context.products.FirstOrDefault(p => p.Id == id);
             if (product != null)
             {
-                
                 _context.products.Remove(product);
+                //_context.SaveChanges();
                 return true;
             }
             return false;

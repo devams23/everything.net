@@ -1,5 +1,6 @@
-
-using Microsoft.OpenApi;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using WebApplication_api.Data;
 using WebApplication_api.Middlewares;
 using WebApplication_api.Repository.Interface;
@@ -7,8 +8,10 @@ using WebApplication_api.Repository.Repository;
 using WebApplication_api.Services.Interface;
 using WebApplication_api.Services.MapperProfile;
 using WebApplication_api.Services.Service;
+using WebApplication_api.Services.Service.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddAutoMapper(cfg =>
@@ -16,6 +19,51 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<MappingProfile>();
 });
 
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultForbidScheme = JwtBearerDefaults.AuthenticationScheme;
+
+}).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+
+        ValidIssuer = builder.Configuration["JwtConfig:Issuer"],
+        ValidAudience = builder.Configuration["JwtConfig:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtConfig:Key"] ?? throw new InvalidOperationException("JWT Key is not configured."))),
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true
+    };
+    Console.WriteLine("JWT Authentication configured with Issuer: " + builder.Configuration["JwtConfig:Issuer"] + ", Audience: " + builder.Configuration["JwtConfig:Audience"]);
+    Console.WriteLine("Issuer signing key: " + builder.Configuration["JwtConfig:Key"]);
+}
+);
+
+builder.Services.AddAuthorization(options =>
+{
+    // Policy for Admin role only
+    options.AddPolicy("AdminOnly", policy =>
+        policy.RequireRole("Admin"));
+
+    // Policy for Vendor role only
+    options.AddPolicy("VendorOnly", policy =>
+        policy.RequireRole("Vendor"));
+
+    // Policy for Admin and Vendor roles
+    options.AddPolicy("AdminOrVendor", policy =>
+        policy.RequireRole("Admin", "Vendor"));
+
+    // Policy for authenticated users (all roles)
+    options.AddPolicy("AuthenticatedUsers", policy =>
+        policy.RequireAuthenticatedUser());
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -34,8 +82,9 @@ builder.Services.AddScoped<IScopedGUI, ScopedGUIService>();
 builder.Services.AddTransient<ITransientGUI, TransientGUIService>();
 
 builder.Services.AddTransient<CustomMiddleware>();
+builder.Services.AddScoped<JWTService>();
 
-
+//builder.Services.AddScoped<IConfiguration>(_ => builder.Configuration);
 var app = builder.Build();
 
 
@@ -46,47 +95,19 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 
-    app.Use(async (context, next) =>
-    {
-        Console.WriteLine("Work that can write to the response. (1)");
-        await next();
-        Console.WriteLine("Work that doesn't write to the response. (1)");
-    });
- 
-    app.Use(async (context, next) =>
-    {
-        Console.WriteLine("Work that can write to the response. (2)");
-        await next();
-        Console.WriteLine("Work that doesn't write to the response. (2)");
-        //await Task.Delay(4000);
-    });
-
-    app.UseMiddleware<CustomMiddleware>();
-
-
-    app.Run(async (context) =>
-    {
-        Console.WriteLine("This statement isn't reached. (3)");
-        await context.Response.WriteAsync("Terminal middleware reached. Ending the pipeline. (3)");
-        //await next();
-        // Console.WriteLine("This statement isn't reached. (3)");
-    });
-
- 
-    // app.Run(async context =>
-    // {
-    //     await context.Response.WriteAsync("Terminal middleware reached. Ending the pipeline. (4)");
-    // });
-
 }
 
 
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+// Add Custom Middleware for request/response logging
+app.UseMiddleware<CustomMiddleware>();
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 
 
 app.Run();
+

@@ -1,5 +1,5 @@
 using AutoMapper;
-using WebApplication_api.Repository.Models;
+using WebApplication_api.Repository.Models.Entities;
 using WebApplication_api.Services.DTO;
 
 
@@ -13,4 +13,4 @@ namespace WebApplication_api.Services.MapperProfile
             //CreateMap<ProductDTO, Product>();
         }
     }
-}
+}      
