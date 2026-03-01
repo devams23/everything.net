@@ -25,14 +25,14 @@ namespace WebApplication_api.Services.Service
 
             if (_productRepository.AddProduct(product))
             {
-                Console.WriteLine("ADDED ProductDTO SUCCESSFULLY.");
+                Console.WriteLine("ADDED Product SUCCESSFULLY.");
             }
         }
 
         public bool RemoveProduct(int productId) {
             if (_productRepository.DeleteProduct(productId))
             {
-                Console.WriteLine("DELETED ProductDTO SUCCESSFULLY.");
+                Console.WriteLine("DELETED Product SUCCESSFULLY.");
                 return true;
             }
             return false;
@@ -48,7 +48,7 @@ namespace WebApplication_api.Services.Service
             if (_productRepository.UpdateProduct(product))
 
             {
-                Console.WriteLine("UPDATED ProductDTO SUCCESSFULLY.");
+                Console.WriteLine("UPDATED Produc SUCCESSFULLY.");
                 return true;
             }
             return false;

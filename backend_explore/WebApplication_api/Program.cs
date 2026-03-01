@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi;
 using WebApplication_api.Data;
 using WebApplication_api.Middlewares;
 using WebApplication_api.Repository.Interface;
@@ -41,8 +42,8 @@ builder.Services.AddAuthentication(options =>
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true
     };
-    Console.WriteLine("JWT Authentication configured with Issuer: " + builder.Configuration["JwtConfig:Issuer"] + ", Audience: " + builder.Configuration["JwtConfig:Audience"]);
-    Console.WriteLine("Issuer signing key: " + builder.Configuration["JwtConfig:Key"]);
+    //Console.WriteLine("JWT Authentication configured with Issuer: " + builder.Configuration["JwtConfig:Issuer"] + ", Audience: " + builder.Configuration["JwtConfig:Audience"]);
+    //Console.WriteLine("Issuer signing key: " + builder.Configuration["JwtConfig:Key"]);
 }
 );
 
@@ -68,7 +69,27 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Source - https://stackoverflow.com/a/79835686
+// Posted by Nermin, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-03-01, License - CC BY-SA 4.0
+
+builder.Services.AddSwaggerGen(options =>
+{
+
+    options.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        Description = "JWT Authorization header using the Bearer scheme."
+    });
+
+    options.AddSecurityRequirement(document => new OpenApiSecurityRequirement
+    {
+        [new OpenApiSecuritySchemeReference("bearer", document)] = []
+    });
+});
+
 
 
 // Dependency Injection 

@@ -97,9 +97,7 @@ namespace WebApplication_api.Controllers
         [Authorize(Roles = "Admin,Vendor")]
         public IActionResult AddProduct(ProductDTO product)
         {
-            var user = User?.Identity?.Name;
-            var role = User?.FindFirst("role")?.Value;
-            Console.WriteLine($"AddProduct called by user: {user} with role: {role}");
+
             productCatalogService.AddProduct(product);
             return Ok(new { message = "Product added successfully", product });
         }
@@ -111,8 +109,7 @@ namespace WebApplication_api.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteProduct(int id)
         {
-            var user = User?.Identity?.Name;
-            Console.WriteLine($"DeleteProduct called by user: {user}");
+
             bool result = productCatalogService.RemoveProduct(id);
             if (!result)
             {
@@ -128,9 +125,8 @@ namespace WebApplication_api.Controllers
         [Authorize(Roles = "Admin,Vendor")]
         public IActionResult UpdateProduct(int id, ProductDTO product)
         {
-            var user = User?.Identity?.Name;
-            var role = User?.FindFirst("role")?.Value;
-            Console.WriteLine($"UpdateProduct called by user: {user} with role: {role}");
+
+
             bool result = productCatalogService.UpdateProduct(id, product);
             if (!result)
             {

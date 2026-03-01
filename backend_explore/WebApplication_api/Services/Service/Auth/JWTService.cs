@@ -81,7 +81,7 @@ namespace WebApplication_api.Services.Service.Auth
                     new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                     new Claim(JwtRegisteredClaimNames.Email, user.Email ?? ""),
                     new Claim(JwtRegisteredClaimNames.Name, user.Username ?? ""),
-                    new Claim("role", user.Role ?? "Customer")
+                    new Claim(ClaimTypes.Role, user.Role ?? "Customer")
                 ]),
                 Expires = tokenExpiry,
                 Issuer = issuer,
