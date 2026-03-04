@@ -61,7 +61,6 @@ namespace WebApplication_api.Services.Service.Auth
             {
                 return null; // Authentication failed
             }
-            Console.WriteLine("User authenticated successfully: " + user.Username);
 
 
             var issuer = _configuration.GetValue<string>("JwtConfig:Issuer");
@@ -74,13 +73,14 @@ namespace WebApplication_api.Services.Service.Auth
             var tokenExpiry = DateTime.UtcNow.AddMinutes(validityinMinutes ?? 60);
             //Console.WriteLine($"Generating JWT for user: {user.Username}, Issuer: {issuer}, Audience: {audience}, Expiry: {tokenExpiry}");
             //Console.WriteLine($"Generating JWT using KEY--: {key}");
+            // this is token descriptor which contains all the information about the token like claims, expiry, signing credentials etc.
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(
                 [
                     new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                     new Claim(JwtRegisteredClaimNames.Email, user.Email ?? ""),
-                    new Claim(JwtRegisteredClaimNames.Name, user.Username ?? ""),
+                    new Claim(ClaimTypes.Name, user.Username ?? ""),
                     new Claim(ClaimTypes.Role, user.Role ?? "Customer")
                 ]),
                 Expires = tokenExpiry,
@@ -91,8 +91,11 @@ namespace WebApplication_api.Services.Service.Auth
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+            Console.WriteLine("Security Token: " + securityToken.GetType().Name);
             var accessToken = tokenHandler.WriteToken(securityToken);
-
+            Console.WriteLine("Access Token: " + accessToken.GetType().Name);
+            
+            Console.WriteLine("User authenticated successfully: " + user.Username);
             return new LoginResponseModel
             {
                 AccessToken = accessToken,

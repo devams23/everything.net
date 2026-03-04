@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="WebApplicationMVC/WebApplicationMVC.csproj" />
   <Project Path="WebApplication_api/WebApplication_api.csproj" />
+  <Project Path="Event_management_Project/Event_management_Project.csproj" />
 </Solution>

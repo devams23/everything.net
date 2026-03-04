@@ -1,18 +1,25 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+using Event_management_Project.Config;
 using Event_management_Project.Repository.Models.Entities;
-//using EF_CORE_Final_PROJECT.Config;
-//using EF_CORE_Final_PROJECT.Models;
-//using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
+namespace Event_management_Project.Data;
 
-namespace WebApplication_api.Data
+public class AppDbContext : DbContext
 {
-    public class AppDbContext : DbContext
+    public AppDbContext(DbContextOptions<AppDbContext> options)
+        : base(options)
     {
-        public DbSet<Product> Products { get; set; }
-        public DbSet<UserAuthDetails> UsersAuthDetails { get; set; }
+    }
 
+    public DbSet<UserAuthDetail> UserAuthDetails => Set<UserAuthDetail>();
+    public DbSet<UserDetail> UserDetails => Set<UserDetail>();
+    public DbSet<Event> Events => Set<Event>();
+    public DbSet<EventRegistration> EventRegistrations => Set<EventRegistration>();
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new UserDetailConfig());
+        modelBuilder.ApplyConfiguration(new EventConfig());
+        modelBuilder.ApplyConfiguration(new EventRegistrationConfig());
     }
 }

@@ -1,0 +1,12 @@
+namespace Event_management_Project.Services.DTO.Auth;
+
+public class AuthResponse
+{
+    public int UserId { get; set; }
+    public string Username { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Role { get; set; } = string.Empty;
+    public string AccessToken { get; set; } = string.Empty;
+    public int ExpiresInSeconds { get; set; }
+    public string RefreshToken { get; set; } = string.Empty;
+}

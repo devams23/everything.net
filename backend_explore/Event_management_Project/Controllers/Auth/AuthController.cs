@@ -1,52 +1,57 @@
+using Event_management_Project.Common;
+using Event_management_Project.Services.DTO.Auth;
+using Event_management_Project.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication_api.Data;
-using WebApplication_api.Repository.Models.Auth;
-using WebApplication_api.Services.Service.Auth;
+using Microsoft.AspNetCore.RateLimiting;
 
-namespace WebApplication_api.Controllers.Auth
+namespace Event_management_Project.Controllers.Auth;
+
+[ApiController]
+[Route("api/auth")]
+[EnableRateLimiting("AuthEndpoints")]
+public class AuthController : ControllerBase
 {
-    [ApiController]
-    [Route("api/auth")]
-    public class AuthController : ControllerBase
+    private readonly IAuthService _authService;
+
+    public AuthController(IAuthService authService)
     {
-        private readonly AppDbContext _context;
-        private readonly IConfiguration _configuration;
-        private readonly JWTService _jwtService;
+        _authService = authService;
+    }
 
-        public AuthController(AppDbContext context, IConfiguration configuration, JWTService jWTService)
-        {
-            _context = context;
-            _configuration = configuration;
-            _jwtService = jWTService;
-        }
+    [HttpPost("register")]
+    [AllowAnonymous]
 
-        [HttpPost("register")]
-        public ActionResult<string> Register([FromBody] RegisterRequestModel registerRequest)
-        {
+    public async Task<IActionResult> Register([FromBody] RegisterRequest request, CancellationToken cancellationToken)
+    {
+        await _authService.RegisterAsync(request, cancellationToken);
+        return Ok(new { message = "User registered successfully. Please login." });
+    }
 
-            Console.WriteLine($"Attempting registration for user: {registerRequest.Username}");
+    [HttpPost("login")]
+    [AllowAnonymous]
+ 
+    public async Task<ActionResult<AuthResponse>> Login([FromBody] LoginRequest request, CancellationToken cancellationToken)
+    {
+        AuthResponse response = await _authService.LoginAsync(request, cancellationToken);
+        return Ok(response);
+    }
 
-            var isRegistered = _jwtService.Register(registerRequest);
+    [HttpPost("refresh")]
+    [AllowAnonymous]
+ 
+    public async Task<ActionResult<AuthResponse>> Refresh([FromBody] RefreshTokenRequest request, CancellationToken cancellationToken)
+    {
+        AuthResponse response = await _authService.RefreshAsync(request, cancellationToken);
+        return Ok(response);
+    }
 
-            if (!isRegistered)
-            {
-                return BadRequest(new { message = "Registration failed. Username or email already exists." });
-            }
-
-            return Ok(new { message = "User registered successfully. Please login." });
-        }
-
-        [HttpPost("login")]
-        public ActionResult<LoginResponseModel> Login([FromBody] LoginRequestModel loginRequest)
-        {
-            Console.WriteLine($"Attempting login for user: {loginRequest.Username}");
-            var response = _jwtService.Authenticate(loginRequest);
-
-            if (response == null)
-            {
-                return Unauthorized(new { message = "Invalid username or password" });
-            }
-            return Ok(response);
-        }
+    [HttpPost("logout")]
+    [Authorize]
+    public async Task<IActionResult> Logout(CancellationToken cancellationToken)
+    {
+        int userId = User.GetRequiredUserId();
+        await _authService.LogoutAsync(userId, cancellationToken);
+        return Ok(new { message = "Logged out." });
     }
 }

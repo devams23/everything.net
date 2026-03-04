@@ -42,8 +42,8 @@ namespace WebApplication_api.Controllers
         [Authorize]
         public IActionResult GetAllProducts()
         {
-            var user = User?.Identity?.Name;
-            Console.WriteLine($"GetAllProducts called by user: {user}");
+            //var user = User?.Identity?.Name;
+            Console.WriteLine($"GetAllProducts called by user: {User.Identity.Name}");
             var products = productCatalogService.GetAllProducts();
             return Ok(products);
         }
@@ -122,7 +122,7 @@ namespace WebApplication_api.Controllers
         /// Update product - Accessible to Admin and Vendor roles
         /// </summary>
         [HttpPut("{id:int}")]
-        [Authorize(Roles = "Admin,Vendor")]
+        [Authorize(Policy = "AdminOrVendor")]
         public IActionResult UpdateProduct(int id, ProductDTO product)
         {
 

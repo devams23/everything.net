@@ -1,85 +1,123 @@
+using System.Security.Claims;
 using System.Text;
+using System.Threading.RateLimiting;
+using Event_management_Project.Data;
+using Event_management_Project.Middlewares;
+using Event_management_Project.Repository.Implementations;
+using Event_management_Project.Repository.Interfaces;
+using Event_management_Project.Security;
+using Event_management_Project.Security.Options;
+using Event_management_Project.Security.Services;
+using Event_management_Project.Services.Implementations;
+using Event_management_Project.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
-using WebApplication_api.Data;
-using WebApplication_api.Middlewares;
-using WebApplication_api.Repository.Interface;
-using WebApplication_api.Repository.Repository;
-using WebApplication_api.Services.Interface;
-using WebApplication_api.Services.MapperProfile;
-using WebApplication_api.Services.Service;
-using WebApplication_api.Services.Service.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-// Add services to the container.
-builder.Services.AddAutoMapper(cfg =>
-{
-    cfg.AddProfile<MappingProfile>();
-});
+builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(JwtOptions.SectionName));
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnectionString"));
 });
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultForbidScheme = JwtBearerDefaults.AuthenticationScheme;
+JwtOptions jwtOptions = builder.Configuration.GetSection(JwtOptions.SectionName).Get<JwtOptions>()
+    ?? throw new InvalidOperationException("JwtConfig is missing.");
 
-}).AddJwtBearer(options =>
-{
-    options.RequireHttpsMetadata = false;
-    options.SaveToken = true;
-    options.TokenValidationParameters = new TokenValidationParameters
+builder.Services
+    .AddAuthentication(options =>
     {
-
-        ValidIssuer = builder.Configuration["JwtConfig:Issuer"],
-        ValidAudience = builder.Configuration["JwtConfig:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtConfig:Key"] ?? throw new InvalidOperationException("JWT Key is not configured."))),
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true
-    };
-    //Console.WriteLine("JWT Authentication configured with Issuer: " + builder.Configuration["JwtConfig:Issuer"] + ", Audience: " + builder.Configuration["JwtConfig:Audience"]);
-    //Console.WriteLine("Issuer signing key: " + builder.Configuration["JwtConfig:Key"]);
-}
-);
-
-
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultForbidScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtOptions.Issuer,
+            ValidAudience = jwtOptions.Audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Key)),
+            ClockSkew = TimeSpan.Zero,
+            NameClaimType = ClaimTypes.NameIdentifier,
+            RoleClaimType = ClaimTypes.Role
+        };
+    });
 
 builder.Services.AddAuthorization(options =>
 {
-    // Policy for Admin role only
-    options.AddPolicy("AdminOnly", policy =>
-        policy.RequireRole("Admin"));
-
-    // Policy for Vendor role only
-    options.AddPolicy("VendorOnly", policy =>
-        policy.RequireRole("Vendor"));
-
-    // Policy for Admin and Vendor roles
-    options.AddPolicy("AdminOrVendor", policy =>
-        policy.RequireRole("Admin", "Vendor"));
-
-    // Policy for authenticated users (all roles)
-    options.AddPolicy("AuthenticatedUsers", policy =>
-        policy.RequireAuthenticatedUser());
+    options.AddPolicy("AdminOnly", p => p.RequireRole("Admin"));
+    options.AddPolicy("OrganizerOrAdmin", p => p.RequireRole("Organizer", "Admin"));
+    options.AddPolicy("AttendeeOnly", p => p.RequireRole("Attendee"));
 });
 
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddEndpointsApiExplorer();
-// Source - https://stackoverflow.com/a/79835686
-// Posted by Nermin, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-03-01, License - CC BY-SA 4.0
 
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
+    {
+        
+        string? userId = httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        string ip = httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+        string key = string.IsNullOrWhiteSpace(userId) ? $"ip:{ip}" : $"user:{userId}";
+
+        return RateLimitPartition.GetFixedWindowLimiter(key, _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 10,
+            Window = TimeSpan.FromMinutes(1),
+            QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+            QueueLimit = 0,
+            AutoReplenishment = true
+        });
+    });
+
+    options.AddPolicy("AuthEndpoints", httpContext =>
+    {
+        string ip = httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+        return RateLimitPartition.GetFixedWindowLimiter($"auth:{ip}", _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 10,
+            Window = TimeSpan.FromMinutes(1),
+            QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+            QueueLimit = 0,
+            AutoReplenishment = true
+        });
+    });
+
+    options.OnRejected = async (context, token) =>
+    {
+        context.HttpContext.Response.ContentType = "application/json";
+        await context.HttpContext.Response.WriteAsync("{\"message\":\"Rate limit exceeded. Try again later.\"}", token);
+    };
+});
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IEventRepository, EventRepository>();
+builder.Services.AddScoped<IRegistrationRepository, RegistrationRepository>();
+
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<IRegistrationService, RegistrationService>();
+
+builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
+builder.Services.AddSingleton<IRefreshTokenService, RefreshTokenService>();
+builder.Services.AddSingleton<ITokenService, TokenService>();
+
+builder.Services.AddTransient<GlobalExceptionMiddleware>();
+builder.Services.AddTransient<RequestLoggingMiddleware>();
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
 
@@ -88,54 +126,31 @@ builder.Services.AddSwaggerGen(options =>
         Type = SecuritySchemeType.Http,
         Scheme = "bearer",
         BearerFormat = "JWT",
-        Description = "JWT Authorization header using the Bearer scheme."
-    });
-
+        Description = "JWT Authorization header ."
+    }); 
+    
     options.AddSecurityRequirement(document => new OpenApiSecurityRequirement
     {
         [new OpenApiSecuritySchemeReference("bearer", document)] = []
     });
 });
 
-
-
-// Dependency Injection 
-builder.Services.AddScoped<ProductCatalogService>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddSingleton<AppDbContext>();
-
-//-------------------adding different lifetimes of services-------------------
-builder.Services.AddSingleton<ISingletonGUI, SingletonGUIService>();
-builder.Services.AddScoped<IScopedGUI, ScopedGUIService>();
-builder.Services.AddTransient<ITransientGUI, TransientGUIService>();
-
-builder.Services.AddTransient<CustomMiddleware>();
-builder.Services.AddScoped<JWTService>();
-
-//builder.Services.AddScoped<IConfiguration>(_ => builder.Configuration);
 var app = builder.Build();
 
+await DbSeeder.SeedAdminAndOrganizersAsync(app.Services);
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-
     app.UseSwagger();
     app.UseSwaggerUI();
-
 }
 
-
-
 app.UseHttpsRedirection();
-
-// Add Custom Middleware for request/response logging
-app.UseMiddleware<CustomMiddleware>();
-
+app.UseMiddleware<GlobalExceptionMiddleware>();
+app.UseMiddleware<RequestLoggingMiddleware>();
+app.UseRateLimiter();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-
 app.Run();
-

@@ -1,13 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication_api.Repository.Models.Auth
-{
-    public class LoginRequestModel
-    {
-        [Required]
-        public string? Username { get; set; }
+namespace Event_management_Project.Services.DTO.Auth;
 
-        [Required]
-        public string? Password { get; set; }
-    }
+public class LoginRequest
+{
+    [Required]
+    public string UsernameOrEmail { get; set; } = string.Empty;
+
+    [Required]
+    public string Password { get; set; } = string.Empty;
 }

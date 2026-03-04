@@ -31,5 +31,6 @@ msbuild.wrn
 # Visual Studio 2015
 .vs/
 
+Event_management_Project.Tests
 appsettings.json
 appsettings.Development.json

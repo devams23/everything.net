@@ -1,0 +1,21 @@
+Client logs in
+    ↓
+JWTService creates token
+    ↓
+Client sends token in header
+    ↓
+UseAuthentication()
+    ↓
+JWT Middleware validates:
+    - Signature
+    - Issuer
+    - Audience
+    - Expiration
+    ↓
+If valid → HttpContext.User created
+    ↓
+UseAuthorization()
+    ↓
+Role / Policy check
+    ↓
+Controller executes

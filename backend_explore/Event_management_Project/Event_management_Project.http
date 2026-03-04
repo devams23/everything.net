@@ -1,0 +1,60 @@
+@host = http://localhost:5205
+@token = REPLACE_WITH_JWT
+@refreshToken = REPLACE_WITH_REFRESH_TOKEN
+
+### Register attendee
+POST {{host}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "attendee1",
+  "email": "attendee1@example.com",
+  "password": "Attendee@123",
+  "firstName": "Att",
+  "lastName": "One",
+  "contactNumber": "9999999999"
+}
+
+### Login
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "usernameOrEmail": "attendee1",
+  "password": "Attendee@123"
+}
+
+### Refresh
+POST {{host}}/api/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+### Create event (Admin/Organizer)
+POST {{host}}/api/events
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Tech Summit 2026",
+  "description": "Annual architecture and cloud summit",
+  "startUtc": "2026-05-20T09:00:00Z",
+  "endUtc": "2026-05-20T17:00:00Z",
+  "location": "Ahmedabad",
+  "capacity": 2,
+  "status": "Published"
+}
+
+### Get paged events
+GET {{host}}/api/events?pageNumber=1&pageSize=20&sortBy=startUtc&sortDir=asc
+Authorization: Bearer {{token}}
+
+### Register for event (Attendee)
+POST {{host}}/api/events/1/registrations
+Authorization: Bearer {{token}}
+
+### My registrations
+GET {{host}}/api/users/me/registrations?pageNumber=1&pageSize=20
+Authorization: Bearer {{token}}

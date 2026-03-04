@@ -21,6 +21,12 @@ builder.Services.AddAutoMapper(cfg =>
 });
 
 
+/* 
+    here the AddJwtBearer method is used to configure JWT authentication. 
+    It sets the default authentication scheme to JWT Bearer and defines the token validation parameters, 
+    including the issuer, audience, signing key, and validation rules. 
+    This configuration allows the application to authenticate and authorize users based on JWT tokens.
+*/
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -33,14 +39,16 @@ builder.Services.AddAuthentication(options =>
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters
     {
-
+        
         ValidIssuer = builder.Configuration["JwtConfig:Issuer"],
         ValidAudience = builder.Configuration["JwtConfig:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtConfig:Key"] ?? throw new InvalidOperationException("JWT Key is not configured."))),
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateLifetime = true,
-        ValidateIssuerSigningKey = true
+        ValidateIssuerSigningKey = true,
+        
+
     };
     //Console.WriteLine("JWT Authentication configured with Issuer: " + builder.Configuration["JwtConfig:Issuer"] + ", Audience: " + builder.Configuration["JwtConfig:Audience"]);
     //Console.WriteLine("Issuer signing key: " + builder.Configuration["JwtConfig:Key"]);
@@ -51,9 +59,12 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization(options =>
 {
+/* options.AddPolicy("Over18Only", policy =>
+    policy.RequireAssertion(context =>
+        int.Parse(context.User.FindFirst("Age").Value) >= 18)); */
     // Policy for Admin role only
     options.AddPolicy("AdminOnly", policy =>
-        policy.RequireRole("Admin"));
+        policy.RequireRole("Admin")); 
 
     // Policy for Vendor role only
     options.AddPolicy("VendorOnly", policy =>
@@ -125,9 +136,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Add Custom Middleware for request/response logging
-app.UseMiddleware<CustomMiddleware>();
 
 app.UseAuthentication();
+app.UseMiddleware<CustomMiddleware>();
 app.UseAuthorization();
 app.MapControllers();
 

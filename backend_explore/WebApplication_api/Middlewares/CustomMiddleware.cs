@@ -1,3 +1,5 @@
+using System.Security.Claims;
+
 namespace WebApplication_api.Middlewares
 {
     public class CustomMiddleware : IMiddleware
@@ -15,15 +17,16 @@ namespace WebApplication_api.Middlewares
             _logger.LogInformation($"[REQUEST] {context.Request.Method} {context.Request.Path}");
 
             // Log user information if authenticated
-            var user = context.User?.Identity?.Name;
-            if (user != null)
-            {
-                _logger.LogInformation($"[AUTH] Authenticated user: {user}");
-            }
-
             try
             {
                 await next(context);
+
+                var username = context.User.FindFirstValue(ClaimTypes.Name);
+                Console.WriteLine("hello im in custom middlware");
+                if (username != null)
+                {
+                    _logger.LogInformation($"[AUTH] Authenticated user: {username}");
+                }
                 _logger.LogInformation($"[RESPONSE] Status Code: {context.Response.StatusCode}");
             }
             catch (Exception ex)
