@@ -8,8 +8,6 @@ public interface IRegistrationRepository
 {
     Task<EventRegistration?> GetByEventAndUserAsync(int eventId, int userId, CancellationToken cancellationToken);
     Task<int> CountByStatusAsync(int eventId, RegistrationStatus status, CancellationToken cancellationToken);
-    Task<int> NextWaitlistPositionAsync(int eventId, CancellationToken cancellationToken);
-    Task<EventRegistration?> GetNextWaitlistedAsync(int eventId, CancellationToken cancellationToken);
     Task AddAsync(EventRegistration registration, CancellationToken cancellationToken);
     Task<PagedResponse<RegistrationResponse>> GetForEventAsync(int eventId, int pageNumber, int pageSize, CancellationToken cancellationToken);
     Task<PagedResponse<RegistrationResponse>> GetForUserAsync(int userId, int pageNumber, int pageSize, CancellationToken cancellationToken);

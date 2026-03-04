@@ -39,6 +39,7 @@ public class EventsController : ControllerBase
     [Authorize(Roles = "Admin,Organizer")]
     public async Task<ActionResult<EventResponse>> Create([FromBody] EventCreateRequest request, CancellationToken cancellationToken)
     {
+        Console.WriteLine(request.Status);
         int userId = User.GetRequiredUserId();
         string role = User.GetRequiredRole();
         EventResponse result = await _eventService.CreateAsync(userId, role, request, cancellationToken);

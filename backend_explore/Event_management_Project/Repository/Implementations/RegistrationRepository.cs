@@ -26,22 +26,9 @@ public class RegistrationRepository : IRegistrationRepository
         return _context.EventRegistrations.CountAsync(x => x.EventId == eventId && x.RegistrationStatus == status, cancellationToken);
     }
 
-    public async Task<int> NextWaitlistPositionAsync(int eventId, CancellationToken cancellationToken)
-    {
-        int? max = await _context.EventRegistrations
-            .Where(x => x.EventId == eventId && x.RegistrationStatus == RegistrationStatus.Waitlisted)
-            .MaxAsync(x => x.WaitlistPosition, cancellationToken);
 
-        return (max ?? 0) + 1;
-    }
 
-    public Task<EventRegistration?> GetNextWaitlistedAsync(int eventId, CancellationToken cancellationToken)
-    {
-        return _context.EventRegistrations
-            .Where(x => x.EventId == eventId && x.RegistrationStatus == RegistrationStatus.Waitlisted)
-            .OrderBy(x => x.WaitlistPosition)
-            .FirstOrDefaultAsync(cancellationToken);
-    }
+
 
     public async Task AddAsync(EventRegistration registration, CancellationToken cancellationToken)
     {
@@ -55,7 +42,6 @@ public class RegistrationRepository : IRegistrationRepository
             .AsNoTracking()
             .Where(x => x.EventId == eventId)
             .OrderBy(x => x.RegistrationStatus)
-            .ThenBy(x => x.WaitlistPosition)
             .ThenBy(x => x.RegisteredUtc);
 
         int totalCount = await q.CountAsync(cancellationToken);
@@ -69,7 +55,7 @@ public class RegistrationRepository : IRegistrationRepository
                 UserId = x.UserId,
                 RegisteredUtc = x.RegisteredUtc,
                 RegistrationStatus = x.RegistrationStatus,
-                WaitlistPosition = x.WaitlistPosition
+                
             })
             .ToListAsync(cancellationToken);
 
@@ -101,7 +87,7 @@ public class RegistrationRepository : IRegistrationRepository
                 UserId = x.UserId,
                 RegisteredUtc = x.RegisteredUtc,
                 RegistrationStatus = x.RegistrationStatus,
-                WaitlistPosition = x.WaitlistPosition
+             
             })
             .ToListAsync(cancellationToken);
 
@@ -147,7 +133,7 @@ public class RegistrationRepository : IRegistrationRepository
                 UserId = x.UserId,
                 RegisteredUtc = x.RegisteredUtc,
                 RegistrationStatus = x.RegistrationStatus,
-                WaitlistPosition = x.WaitlistPosition
+           
             })
             .ToListAsync(cancellationToken);
 

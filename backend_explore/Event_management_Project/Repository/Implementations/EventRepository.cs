@@ -18,6 +18,7 @@ public class EventRepository : IEventRepository
 
     public Task AddAsync(Event entity, CancellationToken cancellationToken)
     {
+        
         return _context.Events.AddAsync(entity, cancellationToken).AsTask();
     }
 

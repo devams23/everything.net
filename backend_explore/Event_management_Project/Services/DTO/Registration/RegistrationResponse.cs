@@ -8,5 +8,4 @@ public class RegistrationResponse
     public int UserId { get; set; }
     public DateTime RegisteredUtc { get; set; }
     public RegistrationStatus RegistrationStatus { get; set; }
-    public int? WaitlistPosition { get; set; }
 }

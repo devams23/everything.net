@@ -44,7 +44,7 @@ public class RegistrationService : IRegistrationService
         int confirmed = await _registrationRepository.CountByStatusAsync(eventId, RegistrationStatus.Confirmed, cancellationToken);
 
         RegistrationStatus status;
-        int? waitlistPosition = null;
+        
 
         if (confirmed < ev.Capacity)
         {
@@ -53,13 +53,13 @@ public class RegistrationService : IRegistrationService
         else
         {
             status = RegistrationStatus.Waitlisted;
-            waitlistPosition = await _registrationRepository.NextWaitlistPositionAsync(eventId, cancellationToken);
+
         }
 
         EventRegistration registration = existing ?? new EventRegistration { EventId = eventId, UserId = userId };
         registration.RegisteredUtc = DateTime.UtcNow;
         registration.RegistrationStatus = status;
-        registration.WaitlistPosition = waitlistPosition;
+
 
         if (existing is null)
         {
@@ -75,7 +75,7 @@ public class RegistrationService : IRegistrationService
             UserId = registration.UserId,
             RegisteredUtc = registration.RegisteredUtc,
             RegistrationStatus = registration.RegistrationStatus,
-            WaitlistPosition = registration.WaitlistPosition
+
         };
     }
 
@@ -93,17 +93,7 @@ public class RegistrationService : IRegistrationService
 
         bool wasConfirmed = registration.RegistrationStatus == RegistrationStatus.Confirmed;
         registration.RegistrationStatus = RegistrationStatus.Cancelled;
-        registration.WaitlistPosition = null;
 
-        if (wasConfirmed)
-        {
-            EventRegistration? nextWaitlisted = await _registrationRepository.GetNextWaitlistedAsync(eventId, cancellationToken);
-            if (nextWaitlisted is not null)
-            {
-                nextWaitlisted.RegistrationStatus = RegistrationStatus.Confirmed;
-                nextWaitlisted.WaitlistPosition = null;
-            }
-        }
 
         await _registrationRepository.SaveChangesAsync(cancellationToken);
         await tx.CommitAsync(cancellationToken);

@@ -25,6 +25,5 @@ public class EventRegistrationConfig : IEntityTypeConfiguration<EventRegistratio
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasIndex(er => new { er.UserId, er.RegisteredUtc });
-        builder.HasIndex(er => new { er.EventId, er.RegistrationStatus, er.WaitlistPosition });
     }
 }

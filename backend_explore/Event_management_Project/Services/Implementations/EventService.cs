@@ -20,8 +20,8 @@ public class EventService : IEventService
     {
         ValidateEventDates(request.StartUtc, request.EndUtc);
 
-        int organizerId = role == UserRole.Admin.ToString() ? userId : userId;
-
+        //int organizerId = role == UserRole.Admin.ToString() ? userId : userId;
+        Console.WriteLine(request.Status);
         Event entity = new()
         {
             Title = request.Title.Trim(),
@@ -29,15 +29,15 @@ public class EventService : IEventService
             StartUtc = request.StartUtc,
             EndUtc = request.EndUtc,
             Location = request.Location.Trim(),
-            OrganizerId = organizerId,
+            OrganizerId = userId,
             Capacity = request.Capacity,
             Status = request.Status,
             CreatedUtc = DateTime.UtcNow,
             UpdatedUtc = DateTime.UtcNow
         };
 
-        await _eventRepository.AddAsync(entity, cancellationToken);
-        await _eventRepository.SaveChangesAsync(cancellationToken);
+        //await _eventRepository.AddAsync(entity, cancellationToken);
+        //await _eventRepository.SaveChangesAsync(cancellationToken);
 
         return new EventResponse
         {
